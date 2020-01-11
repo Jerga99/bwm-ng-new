@@ -1,4 +1,5 @@
 
+@import 'bwm-colors';
 
 .navbar {
 
@@ -6,7 +7,7 @@
     font-size: 30px;
     margin-right: 30px;
     letter-spacing: 1px;
-    color: #F44336;
+    color: $dark-red-color;
     font-weight: bold;
   }
 
@@ -20,12 +21,12 @@
   }
 
   .bwm-btn-main {
-    border-color: #F44336;
-    color: #F44336;
+    border-color: $dark-red-color;
+    color: $dark-red-color;
 
     &:hover, &:focus, &:active {
-      background-color: #F44336;;
-      border-color: #F44336;
+      background-color: $dark-red-color;;
+      border-color: $dark-red-color;
       color: white;
       box-shadow: none;
     }

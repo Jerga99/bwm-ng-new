@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'bwm-colors';
+
+html, body {
+  height: 100%;
+}
+
+html, body, p {
+  color: $dark-gray-color;
+}
