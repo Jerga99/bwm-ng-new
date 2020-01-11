@@ -1,6 +1,33 @@
 
 
+.navbar {
 
-.header-title {
-  color: green;
+  .navbar-brand {
+    font-size: 30px;
+    margin-right: 30px;
+    letter-spacing: 1px;
+    color: #F44336;
+    font-weight: bold;
+  }
+
+  .bwm-search {
+    height: 50px;
+    width: 300px;
+  }
+
+  .nav-item {
+    font-size: 16px;
+  }
+
+  .bwm-btn-main {
+    border-color: #F44336;
+    color: #F44336;
+
+    &:hover, &:focus, &:active {
+      background-color: #F44336;;
+      border-color: #F44336;
+      color: white;
+      box-shadow: none;
+    }
+  }
 }
