@@ -2,7 +2,7 @@
 <bwm-header></bwm-header>
 
 <div class="app-container">
-  <button>Increment</button>
+  <button (click)="increment($event, 1)">Increment</button>
   <h1>{{counter}}</h1>
-  <button>Decrement</button>
+  <button (click)="increment($event, -1)">Decrement</button>
 </div>

@@ -3,12 +3,12 @@
 
 
 
-export function AppDecorator(config) {
+export const AppDecorator = config => {
   console.log(config.message);
 
-  return function(target) {
+  return target => {
     console.log('Decorated class - ', target);
 
     target.prototype.hello = 'Hello From Decorator';
-  }
-}
+  };
+};
