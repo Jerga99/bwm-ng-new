@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
+import { runInThisContext } from 'vm'; // ooops remove this (:
 
 @Component({
   selector: 'bwm-rental-detail',
@@ -8,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class RentalDetailComponent {
 
+  public rentalId = '';
+
+  // dependency injection
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.rentalId = params['rentalId']
+    })
+  }
 }
