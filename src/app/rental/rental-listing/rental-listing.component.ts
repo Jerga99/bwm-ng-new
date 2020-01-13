@@ -8,7 +8,8 @@ import { IRental, AppStorage } from '../shared/rental.interface';
 // TODO: Interfaces in next lecture
 @Component({
   selector: 'bwm-rental-listing',
-  templateUrl: './rental-listing.component.html'
+  templateUrl: './rental-listing.component.html',
+  styleUrls: ['./rental-listing.component.scss']
 })
 export class RentalListingComponent implements OnInit, IRental{
   rentals: Rental[] = [];

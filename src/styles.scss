@@ -9,3 +9,11 @@ html, body {
 html, body, p {
   color: $dark-gray-color;
 }
+
+.bwm-list-page {
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+}
