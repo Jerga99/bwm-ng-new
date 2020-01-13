@@ -1,7 +1,6 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { runInThisContext } from 'vm'; // ooops remove this (:
 
 @Component({
   selector: 'bwm-rental-detail',
