@@ -1,2 +1,4 @@
 <h1>I am Listing Component!</h1>
-<div>{{rentals[0].title}}</div>
+<div *ngFor="let rental of rentals">
+  {{rental._id}}: {{rental.title}}
+</div>
