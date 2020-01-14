@@ -27,7 +27,7 @@
           <!-- TODO: Display title -->
           <h1 class="rental-title">{{rental.title}}</h1>
           <!-- TODO: Display city -->
-          <h2 class="rental-city">{{rental.city}}</h2>
+          <h2 class="rental-city">{{rental.city | upper}}</h2>
           <div class="rental-room-info">
             <!-- TODO: Display numOfRooms -->
             <span><i class="fa fa-building"></i>{{rental.numOfRooms}} bedrooms</span>
