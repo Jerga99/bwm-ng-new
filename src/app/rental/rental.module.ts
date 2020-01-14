@@ -10,7 +10,7 @@ import { RentalCardComponent } from '../shared/rental-card/rental-card.component
 
 import { RentalService } from './shared/rental.service';
 
-import { UppercasePipe } from '../shared/pipes/uppercase.pipe';
+import { UppercasePipe, FirstUpperLetterPipe } from '../shared/pipes/uppercase.pipe';
 
 const routes: Routes = [
   {
@@ -29,7 +29,8 @@ const routes: Routes = [
     RentalListingComponent,
     RentalComponent,
     RentalCardComponent,
-    UppercasePipe
+    UppercasePipe,
+    FirstUpperLetterPipe
   ],
   providers: [
     RentalService
