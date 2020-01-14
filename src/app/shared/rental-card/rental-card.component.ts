@@ -1,6 +1,7 @@
 import { 
   Component, 
   Input} from '@angular/core';
+import { Rental } from 'src/app/rental/shared/rental.model';
 
 @Component({
   selector: 'bwm-rental-card',
@@ -9,5 +10,9 @@ import {
 })
 export class RentalCardComponent {
 
-  @Input('rental') rental;
+  @Input('rentalItem') set rentalItem(rental: Rental) {
+    this.rental = rental;
+  };
+
+  rental: Rental;
 }

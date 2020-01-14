@@ -6,8 +6,14 @@
       *ngFor="let rental of rentals"
       class="col-md-3 col-xs-12">
         <bwm-rental-card 
-          [rental]="rental">
+          [rentalItem]="rental">
         </bwm-rental-card>
+        <div *bwmNgIf="rental.category === 'house'">
+          <h1>I am a house!</h1>
+        </div>
+        <!-- <ng-template [bwmNgIf]="rental.category === 'house'">
+          <h1>I am a house!</h1>
+        </ng-template> -->
     </div>
   </div>
 </div>
