@@ -11,7 +11,7 @@ import { RentalCardComponent } from '../shared/rental-card/rental-card.component
 import { RentalService } from './shared/rental.service';
 
 import { UppercasePipe, FirstUpperLetterPipe } from '../shared/pipes/uppercase.pipe';
-import { HighlightDirective, BwmNgIfDirective } from '../shared/directives/custom.directive';
+import { HighlightDirective, BwmNgIfDirective, BwmNgForDirective } from '../shared/directives/custom.directive';
 
 const routes: Routes = [
   {
@@ -33,7 +33,8 @@ const routes: Routes = [
     UppercasePipe,
     FirstUpperLetterPipe,
     HighlightDirective,
-    BwmNgIfDirective
+    BwmNgIfDirective,
+    BwmNgForDirective
   ],
   providers: [
     RentalService
