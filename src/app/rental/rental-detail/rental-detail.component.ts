@@ -1,6 +1,8 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RentalService } from '../shared/rental.service';
+import { Rental } from '../shared/rental.model';
 
 @Component({
   selector: 'bwm-rental-detail',
@@ -8,14 +10,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RentalDetailComponent {
 
-  public rentalId = '';
+  rental: Rental;
 
-  // dependency injection
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private rentalService: RentalService,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.rentalId = params['rentalId']
+      this.rentalService
+        .getRentalById(params['rentalId'])
+        .subscribe(rental => {
+          this.rental = rental;
+        })
     })
   }
 }

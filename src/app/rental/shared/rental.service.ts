@@ -59,12 +59,19 @@ export class RentalService {
     }
   ]
 
+  getRentalById(rentalId: string): Observable<Rental> {
+    return new Observable(observer => {
+      const rental = this.rentals.find(rental => rental._id === rentalId)
+      setTimeout(() => observer.next(rental), 100);
+    })
+  }
+
   // generic types TODO: Explain in next lecture
   getRentals(): Observable<Rental[]> {
     return new Observable(observer => {
       setTimeout(() => {
         observer.next(this.rentals);
-      }, 100)
+      }, 100);
     })
   }
 }
