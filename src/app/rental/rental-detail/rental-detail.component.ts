@@ -6,7 +6,8 @@ import { Rental } from '../shared/rental.model';
 
 @Component({
   selector: 'bwm-rental-detail',
-  templateUrl: './rental-detail.component.html'
+  templateUrl: './rental-detail.component.html',
+  styleUrls: ['./rental-detail.component.scss']
 })
 export class RentalDetailComponent {
 

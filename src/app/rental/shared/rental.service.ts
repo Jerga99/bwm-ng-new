@@ -8,7 +8,7 @@ export class RentalService {
     {
       _id: '1',
       title: 'Central Apartment',
-      city: 'New York',
+      city: 'new york',
       street: 'Times Square',
       category: 'apartment',
       image: 'http://via.placeholder.com/350x250',
@@ -21,7 +21,7 @@ export class RentalService {
     {
       _id: "2",
       title: "Central Apartment 2",
-      city: "San Francisco",
+      city: "san francisco",
       street: "Main street",
       category: "condo",
       image: "http://via.placeholder.com/350x250",
@@ -34,7 +34,7 @@ export class RentalService {
    {
       _id: "3",
       title: "Central Apartment 3",
-      city: "Bratislava",
+      city: "bratislava",
       street: "Hlavna",
       category: "condo",
       image: "http://via.placeholder.com/350x250",
@@ -47,7 +47,7 @@ export class RentalService {
    {
       _id: "4",
       title: "Central Apartment 4",
-      city: "Berlin",
+      city: "berlin",
       street: "Haupt strasse",
       category: "house",
       image: "http://via.placeholder.com/350x250",
