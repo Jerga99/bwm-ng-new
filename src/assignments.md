@@ -14,4 +14,8 @@
 2. in [rental-detail.component.ts] call [getRentalById] from rental      service, provide id from params. Retrieved rental assign to member variable of rental
 3. Display rental title and description in template
 
-
+# Auth Components
+1. Create "login", "register" components in "auth" folder
+2. In app module create routing to these components
+4. Path to login component = "/login"
+4. Path to register component = "/register"
