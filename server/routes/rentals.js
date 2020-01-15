@@ -15,3 +15,5 @@ router.delete('/:id', deleteRental);
 router.patch('/:id', updateRental);
 
 module.exports = router;
+
+// noSQL - no tables, we are keeping data in JSON format
