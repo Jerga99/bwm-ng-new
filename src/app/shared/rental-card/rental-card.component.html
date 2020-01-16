@@ -1,7 +1,7 @@
 
 <a routerLink="/rentals/{{rental._id}}">
   <div class="card bwm-card">
-    <img class="card-img-top" src="http://via.placeholder.com/350x250" alt="">
+    <img class="card-img-top" [src]="rental.image" alt="">
     <div class="card-block">
       <h6 class="card-subtitle type-{{rental.category}}">
         {{rental.shared ? 'Shared' : 'Whole'}} {{rental.category}} &#183; {{rental.city}}</h6>
