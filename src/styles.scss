@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'bwm-colors';
+@import 'form';
 
 html, body {
   height: 100%;
@@ -29,5 +30,17 @@ html, body, p {
 
   &-house {
     color: #bf1818 !important;
+  }
+}
+
+.btn.bwm-btn-main {
+  border-color: $dark-red-color;
+  color: $dark-red-color;
+
+  &:hover, &:focus, &:active {
+    background-color: $dark-red-color;;
+    border-color: $dark-red-color;
+    color: white;
+    box-shadow: none;
   }
 }
