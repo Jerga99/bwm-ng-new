@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterForm } from '../shared/register-form.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'bwm-register',
@@ -17,12 +18,16 @@ export class RegisterComponent implements OnInit {
     this.registerFormData = new RegisterForm();
   }
 
-  register() {
-    alert(JSON.stringify(this.registerFormData));
+  register(form: NgForm) {
+    this.validateInputs(form);
+
+    if (form.invalid) { return; }
+
   }
 
-  get diagnostic(): string {
-    return JSON.stringify(this.registerFormData);
+  validateInputs(form: NgForm) {
+    Object.keys(form.controls).forEach(controlName => {
+      form.controls[controlName].markAsDirty();
+    })
   }
-
 }

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5">
         <h1 class="page-title">Register</h1>
-        <form>
+        <form #registerForm="ngForm">
           <div class="form-group">
             <label for="username">Username</label>
             <input 
@@ -90,16 +90,20 @@
             </div>
           </div>
           <button 
-            (click)="register()"
+            (click)="register(registerForm)"
             type="submit" 
             class="btn bwm-btn-main">Submit</button>
+          <!-- <button 
+            [disabled]="registerForm.invalid"
+            (click)="register()"
+            type="submit" 
+            class="btn bwm-btn-main">Submit</button> -->
         </form>
         <!-- <div class="alert alert-danger">
           <p *ngFor="let error of errors">
             {{error.detail}}
           </p>
         </div> -->
-        {{diagnostic}}
       </div>
       <div class="col-md-6 ml-auto">
         <div class="image-container">
