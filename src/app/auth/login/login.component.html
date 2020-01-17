@@ -20,6 +20,9 @@
               <div *ngIf="email.errors.required">
                 Email is required.
               </div>
+              <div *ngIf="email.errors.forbiddenEmail">
+                This email is not allowed!
+              </div>
               <div *ngIf="email.errors.pattern">
                 Must be valid email format!
               </div>

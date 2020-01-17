@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { forbiddenEmailValidator } from '../../shared/validators/functions';
 
 @Component({
   selector: 'bwm-login',
@@ -19,7 +20,11 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      email: ['', [
+        Validators.required, 
+        Validators.pattern(this.emailPattern),
+        forbiddenEmailValidator('jerga99@gmail.com')
+      ]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -27,7 +32,7 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.invalid) { return; }
 
-    
+
     alert(this.diagnostic);
   }
 
