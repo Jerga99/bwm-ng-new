@@ -6,9 +6,12 @@
         <form>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text"
-                   class="form-control"
-                   id="username">
+            <input 
+              [(ngModel)]="registerFormData.username"
+              name="username"
+              type="text"
+              class="form-control"
+              id="username">
              <!-- <div class="alert alert-danger">
               <div *ngIf="username.errors.required">
                 Username is required.
@@ -18,25 +21,35 @@
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email"
-                   class="form-control"
-                   id="email">
+            <input 
+              [(ngModel)]="registerFormData.email"
+              name="email"
+              type="email"
+              class="form-control"
+              id="email">
           </div>
 
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password"
-                   class="form-control"
-                   id="password">
+            <input 
+              [(ngModel)]="registerFormData.password"
+              name="password"
+              type="password"
+              class="form-control"
+              id="password">
           </div>
 
           <div class="form-group">
             <label for="passwordConfirmation">Confirm Password</label>
-            <input type="password"
-                   class="form-control"
-                   id="passwordConfirmation">
+            <input 
+              [(ngModel)]="registerFormData.passwordConfirmation"
+              name="passwordConfirmation"
+              type="password"
+              class="form-control"
+              id="passwordConfirmation">
           </div>
           <button 
+            (click)="register()"
             type="submit" 
             class="btn bwm-btn-main">Submit</button>
         </form>
@@ -45,6 +58,7 @@
             {{error.detail}}
           </p>
         </div> -->
+        {{diagnostic}}
       </div>
       <div class="col-md-6 ml-auto">
         <div class="image-container">
