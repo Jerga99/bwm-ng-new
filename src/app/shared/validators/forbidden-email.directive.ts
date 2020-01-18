@@ -20,7 +20,6 @@ export class ForbiddenEmailDirective implements Validator {
   @Input('forbiddenEmail') forbiddenEmail: string;
 
   validate(control: AbstractControl): {[key: string]: any} | null {
-    debugger
     return this.forbiddenEmail ? 
       forbiddenEmailValidator(this.forbiddenEmail)(control) : null
   }

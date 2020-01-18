@@ -45,6 +45,11 @@
                 Minimum length of password is 6 characters.
               </div>
             </div>
+            <!-- <div 
+              *ngIf="loginForm.errors?.sameAs && !password.pristine"
+              class="alert alert-danger">
+              Password  must be the same as email!
+            </div> -->
           </div>
           <button 
             (click)="login()"
