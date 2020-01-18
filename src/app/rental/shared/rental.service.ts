@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { Rental } from './rental.model';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RentalService {
 
   constructor(private http: HttpClient) {}
