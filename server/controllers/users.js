@@ -7,7 +7,10 @@ exports.login = (req, res) => {
   const { email, password } = req.body;
 
   if (!password || !email) {
-    return res.status(422).send({errors: [{title: 'Missing Data', detail: 'Email or password is missing!'}]});
+    return res
+      .sendApiError(
+        { title: 'Missing Data', 
+          detail: 'Email or password is missing!'});
   }
 
   User.findOne({email}, (error, foundUser) => {
@@ -16,7 +19,10 @@ exports.login = (req, res) => {
     }
 
     if (!foundUser) {
-      return res.status(422).send({errors: [{title: 'Invalid Email', detail: "User with provided email doesn't exists"}]});
+      return res
+        .sendApiError(
+          { title: 'Invalid Email', 
+            detail: "User with provided email doesn't exists"});
     }
 
     if (foundUser.hasSamePassword(password)) {
@@ -26,21 +32,29 @@ exports.login = (req, res) => {
       }, config.JWT_SECRET, { expiresIn: '2h'})
       return res.json(token);
     } else {
-      return res.status(422).send({errors: [{title: 'Invalid Password', detail: "Provided password is wrong!"}]});
+      return res
+        .sendApiError(
+          { title: 'Invalid Email', 
+            detail: "User with provided email doesn't exists"});
     }
   })
 }
-
 
 exports.register = (req, res) => {
   const { username, email, password, passwordConfirmation } = req.body;
 
   if (!password || !email) {
-    return res.status(422).send({errors: [{title: 'Missing Data', detail: 'Email or password is missing!'}]});
+    return res
+      .sendApiError(
+        { title: 'Missing Data', 
+          detail: 'Email or password is missing!'});
   }
 
   if (password !== passwordConfirmation) {
-    return res.status(422).send({errors: [{title: 'Invalid password', detail: 'Password is not maching confirmation password!'}]});
+    return res
+      .sendApiError(
+        { title: 'Invalid password', 
+          detail: 'Password is not maching confirmation password!'});
   }
 
   User.findOne({email}, (error, existingUser) => {
@@ -49,7 +63,10 @@ exports.register = (req, res) => {
     }
 
     if (existingUser) {
-      return res.status(422).send({errors: [{title: 'Invalid Email', detail: 'User with provided email already exists!'}]});
+      return res
+      .sendApiError(
+        { title: 'Invalid Email', 
+          detail: 'User with provided email already exists!'});
     }
 
     const user = new User({username, email, password});
