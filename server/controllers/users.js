@@ -1,5 +1,7 @@
 
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const config = require('../config/dev');
 
 exports.login = (req, res) => {
   const { email, password } = req.body;
@@ -18,8 +20,11 @@ exports.login = (req, res) => {
     }
 
     if (foundUser.hasSamePassword(password)) {
-      // Generate JWT
-      return res.json({token: 'in next lecture (:'})
+      const token = jwt.sign({
+        sub: foundUser.id,
+        username: foundUser.username
+      }, config.JWT_SECRET, { expiresIn: '2h'})
+      return res.json(token);
     } else {
       return res.status(422).send({errors: [{title: 'Invalid Password', detail: "Provided password is wrong!"}]});
     }
