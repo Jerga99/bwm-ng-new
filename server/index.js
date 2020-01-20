@@ -6,6 +6,7 @@ const config = require('./config/dev');
 
 // routes
 const rentalRoutes = require('./routes/rentals');
+const usersRoutes = require('./routes/users');
 
 // models
 const Rental = require('./models/rental');
@@ -25,6 +26,7 @@ app.use(bodyParser.json())
 
 // Api Routes
 app.use('/api/v1/rentals', rentalRoutes);
+app.use('/api/v1/users', usersRoutes);
 
 
 
