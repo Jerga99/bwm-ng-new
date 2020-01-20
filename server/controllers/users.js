@@ -62,3 +62,39 @@ exports.register = (req, res) => {
     })
   })
 }
+
+
+exports.onlyAuthUser = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (token) {
+    const decodedToken = parseToken(token);
+    if (!decodedToken) { return notAuthorized(res); }
+
+    User.findById(decodedToken.sub, (error, foundUser) => {
+      if(error) {
+        return res.status(422).send({errors: [{title: 'DB Error', detail: 'Oooops, something went wrong!'}]});
+      }
+
+      if (foundUser) {
+        res.locals.user = foundUser;
+        next();
+      } else {
+        return notAuthorized(res);
+      }
+    })
+  } else {
+    return notAuthorized(res);
+  }
+}
+
+function parseToken(token) {
+  return jwt.verify(token.split(' ')[1], config.JWT_SECRET) || null;
+}
+
+function notAuthorized(res) {
+  return res
+      .status(401)
+      .send({errors: 
+        [{title: 'Not Authorized!', detail: 'You need to log in to get an access!'}]})
+}
