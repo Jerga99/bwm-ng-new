@@ -12,7 +12,7 @@ exports.login = (req, res) => {
 
   User.findOne({email}, (error, foundUser) => {
     if (error) {
-      return res.status(422).send({errors: [{title: 'DB Error', detail: 'Oooops, something went wrong!'}]});
+      return res.mongoError(error);
     }
 
     if (!foundUser) {
@@ -45,7 +45,7 @@ exports.register = (req, res) => {
 
   User.findOne({email}, (error, existingUser) => {
     if (error) {
-      return res.status(422).send({errors: [{title: 'DB Error', detail: 'Oooops, something went wrong!'}]});
+      return res.mongoError(error);
     }
 
     if (existingUser) {
@@ -55,7 +55,7 @@ exports.register = (req, res) => {
     const user = new User({username, email, password});
     user.save((error) => {
       if (error) {
-        return res.status(422).send({errors: [{title: 'DB Error', detail: 'Oooops, something went wrong!'}]});
+        return res.mongoError(error);
       }
 
       return res.json({status: 'registered'});
@@ -73,7 +73,7 @@ exports.onlyAuthUser = (req, res, next) => {
 
     User.findById(decodedToken.sub, (error, foundUser) => {
       if(error) {
-        return res.status(422).send({errors: [{title: 'DB Error', detail: 'Oooops, something went wrong!'}]});
+        return res.mongoError(error);
       }
 
       if (foundUser) {
