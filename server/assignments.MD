@@ -17,3 +17,12 @@
    '/api/v1/users/register'
 3. in both endpoints return JSON response with some custom text
 4. test these endpoints in POSTMAN
+
+### Create user model contains:
+1. 'username', of type String, min 4, max 32
+2. 'email', of type, String, min 4, max 32, should be "true" for [required], [lowercase], [unique] and should [match] email regex we provided on frontend:
+
+[/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/]
+
+3. 'password', of type String, and is [required], min 4, max 32
+	
