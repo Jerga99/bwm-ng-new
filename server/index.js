@@ -24,7 +24,20 @@ mongoose.connect(config.DB_URI, {
 });
 
 // Middleware
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+// const middleware = (req, res, next) => {
+//   const isError = false;
+//   console.log('Hello World!');
+//   if (!isError) { 
+//     req.someProp = "Hello World"
+//     return next(); 
+//   }
+
+//   return res.status(422).send('We got error!');
+// }
+
+// app.use(middleware);
 
 // Api Routes
 app.use('/api/v1/rentals', rentalRoutes);
