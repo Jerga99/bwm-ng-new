@@ -11,41 +11,44 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  private url: string;
 
   constructor(
     private auth: AuthService, 
     private router: Router){}
 
   canActivate(_: any, state: RouterStateSnapshot) {
-    this.url = state.url;
-    return this.auth.isAuthenticated ? 
-              this.handleAuthState() : this.handleNotAuthState();
+    return this.checkIfCanNavigate(state.url);
   }
 
-  private handleAuthState(): boolean {
-    if (this.isAuthPage) {
-      this.router.navigate(['/rentals']);
-      return false;
-    }
-
-    return true;
-  }
-
-  private handleNotAuthState(): boolean {
-    if (this.isAuthPage) {
+  private checkIfCanNavigate(url: string): boolean {
+    if (this.auth.isAuthenticated) {
       return true;
     }
 
     this.router.navigate(['/login']);
     return false;
   }
+}
 
-  private get isAuthPage(): boolean {
-    if (this.url.includes('login') || this.url.includes('register')) {
-      return true;
+@Injectable({
+  providedIn: 'root'
+})
+export class GuestGuard implements CanActivate {
+
+  constructor(
+    private auth: AuthService, 
+    private router: Router){}
+
+  canActivate(_: any, state: RouterStateSnapshot) {
+    return this.checkIfCanNavigate(state.url);
+  }
+
+  private checkIfCanNavigate(url: string): boolean {
+    if (this.auth.isAuthenticated) {
+      this.router.navigate(['/rentals']);
+      return false;
     }
 
-    return false;
+    return true;
   }
 }
