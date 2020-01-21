@@ -12,6 +12,9 @@
         type="submit">Search</button>
     </form>
     <ul class="navbar-nav">
+      <li *ngIf="isAuthenticated" class="nav-item active">
+        <div class="nav-link">{{username}}</div>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
