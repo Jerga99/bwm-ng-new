@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
   @Input('isAuthenticated') isAuthenticated = false;
   @Input('username') username = '';
+  @Input('logout') logout = () => {};
 }
