@@ -55,6 +55,18 @@ export class AuthService {
           throwError(exctractApiError(resError))
         )
     )}
+  
+  checkAuthentication(): boolean {
+    debugger
+    const authToken = localStorage.getItem('bwm_auth_token');
+    if (!authToken) { return false; }
+
+    const decodedToken = jwt.decodeToken(authToken);
+    if (!decodedToken) { return false; }
+
+    this.decodedToken = decodedToken;
+    return true;
+  }
 
   private saveToken(token: string): string | null {
     const decodedToken = jwt.decodeToken(token);
