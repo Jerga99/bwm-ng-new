@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   registerFormData: RegisterForm;
+  errors = [];
   emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
   constructor(
@@ -31,6 +32,10 @@ export class RegisterComponent implements OnInit {
       .register(this.registerFormData)
       .subscribe(_ => {
         this.router.navigate(['/login']);
+      }, (errors) => {
+        debugger
+        this.errors = errors;
+        console.log(errors)
       });
   }
 
