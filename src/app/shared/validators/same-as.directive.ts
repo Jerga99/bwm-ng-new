@@ -24,7 +24,6 @@ export class SameAsDirective implements Validator {
   @Input('sameAs') controls: string[];
 
   validate(control: FormGroup): ValidationErrors | null {
-    debugger
     return this.controls && this.controls.length === 2 ? 
       sameAsValidator(this.controls)(control) : null
   }

@@ -15,7 +15,6 @@ export function forbiddenEmailValidator(email: String): ValidatorFn {
 
 export function sameAsValidator(controls: string[]): ValidatorFn {
   return (control: FormGroup): ValidationErrors | null => {
-    debugger
     const firstControl = control.get(controls[0]);
     const secondControl = control.get(controls[1]);
 
