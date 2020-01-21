@@ -28,15 +28,12 @@ export class RegisterComponent implements OnInit {
 
     if (form.invalid) { return; }
 
+    this.errors = [];
     this.auth
       .register(this.registerFormData)
       .subscribe(_ => {
         this.router.navigate(['/login']);
-      }, (errors) => {
-        debugger
-        this.errors = errors;
-        console.log(errors)
-      });
+      }, (errors: BwmApi.Error[]) => this.errors = errors);
   }
 
   validateInputs(form: NgForm) {
