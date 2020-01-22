@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalSecretComponent implements OnInit {
 
+  greeting = 'Hello World!';
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
