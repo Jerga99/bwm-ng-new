@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of as observableOf } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import tt from '@tomtom-international/web-sdk-maps';
 
@@ -19,16 +19,28 @@ interface GeoPosition {
 })
 export class MapService {
 
+  private locationCache: {[key: string]: GeoPosition} = {};
+
   constructor(private http: HttpClient) { }
 
-  requestGeoLocation(location: string, apiKey: String): Observable<GeoPosition> {
+  getGeoPosition(location: string, apiKey: String): Observable<GeoPosition> {
+    const cachedLocation = this.getCachedLocation(location);
+
+    return cachedLocation ? 
+      observableOf(cachedLocation) : 
+      this.requestGeoLocation(location, apiKey)
+  }
+
+  private requestGeoLocation(location: string, apiKey: String): Observable<GeoPosition> {
     return this.http
       .get(`https://api.tomtom.com/search/2/geocode/${location}.JSON?key=${apiKey}`)
       .pipe(
         map((tomRes: TomResponse) => {
           const results = tomRes.results;
           if (results && results.length > 0) {
-            return results[0].position;
+            const { position } = results[0]
+            this.cacheLocation(location, position);
+            return position;
           }
 
           throw this.locationError;
@@ -70,6 +82,20 @@ export class MapService {
       .setLngLat(new tt.LngLat(0, 0))
       .setHTML(`<p>${message}</p>`)
       .addTo(map);
+  }
+
+  private getCachedLocation(location: string): GeoPosition {
+    const locationKey = this.normalizeLocation(location);
+    return this.locationCache[locationKey];
+  }
+ 
+  private cacheLocation(location: string, position: GeoPosition) {
+    const locationKey = this.normalizeLocation(location);
+    this.locationCache[locationKey] = position;
+  }
+
+  private normalizeLocation(location: string) {
+    return location.replace(/\s/g,'').toLowerCase()
   }
 
   private get locationError() {

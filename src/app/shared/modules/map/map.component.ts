@@ -17,7 +17,7 @@ export class MapComponent {
 
   @Input('location') set location(location: string) {
     this.createMap();
-    this.getGeoLocation(location);
+    this.getGeoPosition(location);
   };
   
   constructor(private mapService: MapService) { }
@@ -26,9 +26,9 @@ export class MapComponent {
     this.map = this.mapService.createMap({apiKey: this.API_KEY})
   }
 
-  private getGeoLocation(location: string) {
+  private getGeoPosition(location: string) {
     this.mapService
-      .requestGeoLocation(location, this.API_KEY)
+      .getGeoPosition(location, this.API_KEY)
       .subscribe(position => {
         this.mapService.initMap(this.map, position);
       }, (error: Error) => {
