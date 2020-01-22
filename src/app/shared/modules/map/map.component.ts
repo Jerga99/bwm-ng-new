@@ -3,6 +3,8 @@ import {
   Input, 
   ViewEncapsulation } from '@angular/core';
 import tt from '@tomtom-international/web-sdk-maps';
+import { MapService } from './map.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'bwm-map',
@@ -14,18 +16,30 @@ export class MapComponent {
 
   @Input('location') set location(location: string) {
     this.createMap();
+    this.getGeoLocation(location);
   };
-  private readonly API_KEY = 'Rukxk4n6MVk8oILY0HUJAmAAvAiMM1XJ';
-
-  constructor() { }
+  
+  constructor(private mapService: MapService) { }
 
   private createMap() {
     const map = tt.map({
-      key: this.API_KEY,
+      key: this.mapService.API_KEY,
       container: 'bwm-map',
       style: 'tomtom://vector/1/basic-main'
     });
       
     map.addControl(new tt.NavigationControl());
   }
+
+  private getGeoLocation(location: string) {
+    this.mapService
+      .requestGeoLocation(location)
+      .subscribe(ttRes => {
+        debugger
+        console.log(ttRes);
+      })
+  }
+
 }
+
+
