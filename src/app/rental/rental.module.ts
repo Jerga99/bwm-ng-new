@@ -3,15 +3,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MapModule } from '../shared/modules/map/map.module';
 
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { RentalListingComponent } from './rental-listing/rental-listing.component';
 import { RentalComponent } from './rental.component';
 import { RentalCardComponent } from '../shared/rental-card/rental-card.component';
+import { RentalSecretComponent } from './rental-secret/rental-secret.component';
 
 import { UppercasePipe, FirstUpperLetterPipe } from '../shared/pipes/uppercase.pipe';
 import { HighlightDirective, BwmNgIfDirective, BwmNgForDirective } from '../shared/directives/custom.directive';
-import { RentalSecretComponent } from './rental-secret/rental-secret.component';
 import { AuthGuard } from '../auth/shared/auth.guard';
 
 const routes: Routes = [
@@ -42,7 +43,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MapModule
   ]
 })
 export class RentalModule {}

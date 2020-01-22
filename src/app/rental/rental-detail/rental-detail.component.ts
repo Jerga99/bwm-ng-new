@@ -26,4 +26,8 @@ export class RentalDetailComponent {
         })
     })
   }
+
+  get rentalLocation(): string {
+    return `${this.rental.city}, ${this.rental.street}`
+  }
 }
