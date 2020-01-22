@@ -47,6 +47,11 @@ export class MapComponent {
         })
           .setLngLat([position.lon, position.lat])
           .addTo(this.map);
+      }, (error: Error) => {
+        new tt.Popup({className: 'bwm-popup', closeButton: false, closeOnClick: false})
+        .setLngLat(new tt.LngLat(0, 0))
+        .setHTML(`<p>${error.message}</p>`)
+        .addTo(this.map);
       })
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 interface TomResponse {
   summary: {[key: string]: any};
@@ -32,8 +32,12 @@ export class MapService {
             return results[0].position;
           }
 
-          throw new Error('Location not found!')
-      }))
+          throw this.locationError;
+      }), catchError(_ => throwError(this.locationError)))
+  }
+
+  private get locationError() {
+    return new Error('Location not found!');
   }
 }
 
