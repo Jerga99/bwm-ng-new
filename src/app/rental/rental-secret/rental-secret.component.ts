@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalSecretComponent implements OnInit {
 
-  message = 'Hello World!';
+  greeting = 'Hello World!';
 
   constructor() { }
 
