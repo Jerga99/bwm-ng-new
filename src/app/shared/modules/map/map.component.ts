@@ -2,9 +2,7 @@ import {
   Component, 
   Input, 
   ViewEncapsulation } from '@angular/core';
-import tt from '@tomtom-international/web-sdk-maps';
 import { MapService } from './map.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'bwm-map',
@@ -15,6 +13,7 @@ import { map } from 'rxjs/operators';
 export class MapComponent {
 
   private map: any;
+  public readonly API_KEY = 'Rukxk4n6MVk8oILY0HUJAmAAvAiMM1XJ';
 
   @Input('location') set location(location: string) {
     this.createMap();
@@ -24,34 +23,16 @@ export class MapComponent {
   constructor(private mapService: MapService) { }
 
   private createMap() {
-    this.map = tt.map({
-      key: this.mapService.API_KEY,
-      container: 'bwm-map',
-      style: 'tomtom://vector/1/basic-main',
-      zoom: 15,
-      scrollZoom: false
-    });
+    this.map = this.mapService.createMap({apiKey: this.API_KEY})
   }
 
   private getGeoLocation(location: string) {
     this.mapService
-      .requestGeoLocation(location)
+      .requestGeoLocation(location, this.API_KEY)
       .subscribe(position => {
-        this.map.setCenter(new tt.LngLat(position.lon, position.lat));
-
-        const markerDiv = document.createElement('div');
-        markerDiv.className = 'bwm-marker';
-
-        new tt.Marker({
-          element: markerDiv
-        })
-          .setLngLat([position.lon, position.lat])
-          .addTo(this.map);
+        this.mapService.initMap(this.map, position);
       }, (error: Error) => {
-        new tt.Popup({className: 'bwm-popup', closeButton: false, closeOnClick: false})
-        .setLngLat(new tt.LngLat(0, 0))
-        .setHTML(`<p>${error.message}</p>`)
-        .addTo(this.map);
+        this.mapService.addPopupToMap(this.map, error.message);
       })
   }
 
