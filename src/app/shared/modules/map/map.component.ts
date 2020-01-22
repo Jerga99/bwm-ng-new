@@ -28,10 +28,9 @@ export class MapComponent {
       key: this.mapService.API_KEY,
       container: 'bwm-map',
       style: 'tomtom://vector/1/basic-main',
-      zoom: 15
+      zoom: 15,
+      scrollZoom: false
     });
-      
-    this.map.addControl(new tt.NavigationControl());
   }
 
   private getGeoLocation(location: string) {
@@ -39,6 +38,15 @@ export class MapComponent {
       .requestGeoLocation(location)
       .subscribe(position => {
         this.map.setCenter(new tt.LngLat(position.lon, position.lat));
+
+        const markerDiv = document.createElement('div');
+        markerDiv.className = 'bwm-marker';
+
+        new tt.Marker({
+          element: markerDiv
+        })
+          .setLngLat([position.lon, position.lat])
+          .addTo(this.map);
       })
   }
 
