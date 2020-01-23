@@ -4,33 +4,49 @@
     <div class="row">
       <div class="col-md-5">
         <h1 class="page-title">Create Rental</h1>
-        <form>
+        <form #rentalForm="ngForm">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text"
-                   class="form-control"
-                   id="title">
+            <input 
+              [(ngModel)]="newRental.title"
+              name="title"
+              required
+              type="text"
+              class="form-control"
+              id="title">
           </div>
 
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text"
-                   class="form-control"
-                   id="city">
+            <input 
+              [(ngModel)]="newRental.city"
+              name="city"
+              required
+              type="text"
+              class="form-control"
+              id="city">
           </div>
 
           <div class="form-group">
             <label for="street">Street</label>
-            <input type="text"
-                   class="form-control"
-                   id="street">
+            <input 
+              [(ngModel)]="newRental.street"
+              name="street"
+              required
+              type="text"
+              class="form-control"
+              id="street">
           </div>
 
           <div class="form-group">
             <label for="category">Category</label>
 
-            <select class="form-control"
-                    id="category">
+            <select 
+              [(ngModel)]="newRental.category"
+              name="category"
+              required
+              class="form-control"
+              id="category">
               <option *ngFor="let category of rentalCategories"> {{category}} </option>
 
             </select>
@@ -38,24 +54,36 @@
 
           <div class="form-group">
             <label for="bedrooms">Image Url</label>
-            <input type="number"
-                   class="form-control"
-                   id="image">
+            <input 
+              [(ngModel)]="newRental.image"
+              name="image"
+              required
+              type="text"
+              class="form-control"
+              id="image">
           </div>
 
           <div class="form-group">
             <label for="bedrooms">Rooms</label>
-            <input type="number"
-                   class="form-control"
-                   id="numOfRooms">
+            <input 
+              [(ngModel)]="newRental.numOfRooms"
+              name="numOfRooms"
+              required
+              type="number"
+              class="form-control"
+              id="numOfRooms">
           </div>
 
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea rows="5"
-                      type="text"
-                      class="form-control"
-                      id="description">
+            <textarea 
+              [(ngModel)]="newRental.description"
+              name="description"
+              required
+              rows="5"
+              type="text"
+              class="form-control"
+              id="description">
             </textarea>
           </div>
 
@@ -65,27 +93,27 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
               </div>
-              <input type="number"
-                     class="form-control"
-                     id="dailyPrice">
+              <input 
+                [(ngModel)]="newRental.dailyPrice"
+                name="dailyPrice"
+                required
+                type="number"
+                class="form-control"
+                id="dailyPrice">
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text"
-                   class="form-control"
-                   id="phone">
-          </div>
-
           <div class="form-group">
             <label for="shared">Shared</label>
-            <input type="checkbox"
-                   class="form-control"
-                   id="shared">
+            <input 
+              [(ngModel)]="newRental.shared"
+              name="shared"
+              required
+              type="checkbox"
+              class="form-control"
+              id="shared">
           </div>
           <button type="button"
-                  (click)="createRental()"
+                  (click)="createRental(rentalForm)"
                   class="btn bwm-btn-main">Create
           </button>
         </form>

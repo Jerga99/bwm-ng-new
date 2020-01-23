@@ -18,4 +18,8 @@ export class RentalService {
   getRentals(): Observable<Rental[]> {
     return this.http.get<Rental[]>(`/api/v1/rentals`);
   }
+
+  createRental(newRental: Rental): any {
+    alert(JSON.stringify(newRental));
+  }
 }

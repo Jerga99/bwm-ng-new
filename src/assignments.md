@@ -24,3 +24,10 @@
 1. Create [rental-new] component in rental folder
 2. Provide html, scss, image from resources
 3. Create route to this component [/rentals/new]
+
+# Get Data from Rental New Form
+1. Use template forms to get data from rental new form
+2. Provide validation - up to your preference
+3. In rental service create function to create rental (just alert data)
+4. When clicking submit button call function from rental service
+ provide data from form and alert them

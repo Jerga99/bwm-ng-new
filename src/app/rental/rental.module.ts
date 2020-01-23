@@ -15,6 +15,7 @@ import { UppercasePipe, FirstUpperLetterPipe } from '../shared/pipes/uppercase.p
 import { HighlightDirective, BwmNgIfDirective, BwmNgForDirective } from '../shared/directives/custom.directive';
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { RentalNewComponent } from './rental-new/rental-new.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -47,7 +48,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     HttpClientModule,
-    MapModule
+    MapModule,
+    FormsModule
   ]
 })
 export class RentalModule {}
