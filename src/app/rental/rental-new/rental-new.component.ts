@@ -3,6 +3,7 @@ import { Rental } from '../shared/rental.model';
 import { NgForm } from '@angular/forms';
 import { RentalService } from '../shared/rental.service';
 import { validateInputs } from 'src/app/shared/validators/functions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bwm-rental-new',
@@ -13,8 +14,11 @@ export class RentalNewComponent implements OnInit {
 
   rentalCategories = Rental.CATEGORIES;
   newRental: Rental;
+  errors: BwmApi.Error[] = [];
 
-  constructor(private rentalService: RentalService) {}
+  constructor(
+    private rentalService: RentalService,
+    private router: Router) {}
 
   ngOnInit() {
     this.newRental = new Rental();
@@ -27,6 +31,12 @@ export class RentalNewComponent implements OnInit {
 
     if (rentalForm.invalid) { return; }
 
-    this.rentalService.createRental(this.newRental);
+    this.errors = [];
+    this.rentalService
+      .createRental(this.newRental)
+      .subscribe(
+        _ => this.router.navigate(['/rentals']),
+        errors => this.errors = errors
+      )
   }
 }
