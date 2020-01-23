@@ -2,6 +2,9 @@
 
 
 export class Rental {
+
+  static readonly CATEGORIES = ['apartment', 'house', 'condo'];
+
   _id: string; // unique identifier as it will be stored in DB
   title: string; // Some nice place in LA
   city: string; // Los Angeles

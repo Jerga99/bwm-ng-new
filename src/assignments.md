@@ -19,3 +19,8 @@
 2. In app module create routing to these components
 4. Path to login component = "/login"
 4. Path to register component = "/register"
+
+# Rental New
+1. Create [rental-new] component in rental folder
+2. Provide html, scss, image from resources
+3. Create route to this component [/rentals/new]
