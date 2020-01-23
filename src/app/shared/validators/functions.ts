@@ -3,7 +3,15 @@ import {
   AbstractControl, 
   ValidatorFn, 
   FormGroup,
-  ValidationErrors } from '@angular/forms';
+  ValidationErrors, 
+  NgForm} from '@angular/forms';
+
+
+export function validateInputs(form: NgForm) {
+  Object.keys(form.controls).forEach(controlName => {
+    form.controls[controlName].markAsDirty();
+  })
+}
 
 
 export function forbiddenEmailValidator(email: String): ValidatorFn {
