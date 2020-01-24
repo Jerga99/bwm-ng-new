@@ -7,6 +7,9 @@ import { HeaderComponent } from './shared/header/header.component';
 
 import { RentalModule } from './rental/rental.module';
 import { AuthModule } from './auth/auth.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { TokenInterceptor } from './auth/shared/token.interceptor';
 
 // root module
 @NgModule({
@@ -18,9 +21,16 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     RentalModule,
-    AuthModule
+    AuthModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

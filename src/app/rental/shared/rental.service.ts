@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Rental } from './rental.model';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { exctractApiError } from 'src/app/shared/helpers/functions';
-import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,7 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 export class RentalService {
 
   constructor(
-    private http: HttpClient,
-    private auth: AuthService) {}
+    private http: HttpClient) {}
   
   getRentalById(rentalId: string): Observable<Rental> {
     return this.http.get<Rental>(`/api/v1/rentals/${rentalId}`);
@@ -25,14 +23,7 @@ export class RentalService {
   }
 
   createRental(newRental: Rental): Observable<Rental> {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.auth.authToken}`
-      })
-    }
-
-    return this.http.post<Rental>('/api/v1/rentals', newRental, httpOptions)
+    return this.http.post<Rental>('/api/v1/rentals', newRental)
       .pipe(
         catchError(
           (resError: HttpErrorResponse) => throwError(exctractApiError(resError))))
