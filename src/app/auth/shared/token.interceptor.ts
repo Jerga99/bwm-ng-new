@@ -16,8 +16,11 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.auth.authToken;
+    if (request.url.includes('api.tomtom.com')) {
+      return next.handle(request);
+    }
 
+    const token = this.auth.authToken;
     if (token) {
       request = request.clone({
         setHeaders: {
