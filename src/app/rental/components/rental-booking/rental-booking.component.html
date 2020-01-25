@@ -6,7 +6,13 @@
   <ng-container *ngIf="isAuth">
     <form>
       <label>Dates</label>
-        [TODO:Here Comes Date Input]
+      <input 
+        type="text" 
+        ngxDaterangepickerMd
+        name="daterange" 
+        [locale]="locale"
+        [(ngModel)]="selected" 
+        class="form-control"/>
       <div class="form-group">
         <label for="guests">Guests</label>
         <!-- TODO: bind to newBooking.guests -->
@@ -15,7 +21,9 @@
                id="guests">
       </div>
     </form>
-    <button class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+    <button 
+      (click)="reservePlace()"
+      class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
     <hr>
   </ng-container>
   <!-- TODO: if is NOT authenticated -->
