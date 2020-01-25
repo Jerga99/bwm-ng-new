@@ -1,0 +1,32 @@
+<div class="booking">
+  <!-- TODO: rental.dailyPrice -->
+  <h3 class="booking-price">$12 <span class="booking-per-night">per night</span></h3>
+  <hr>
+  <!-- TODO: if is authenticated -->
+  <ng-container *ngIf="isAuth">
+    <form>
+      <label>Dates</label>
+        [TODO:Here Comes Date Input]
+      <div class="form-group">
+        <label for="guests">Guests</label>
+        <!-- TODO: bind to newBooking.guests -->
+        <input type="number"
+               class="form-control"
+               id="guests">
+      </div>
+    </form>
+    <button class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
+    <hr>
+  </ng-container>
+  <!-- TODO: if is NOT authenticated -->
+  <div *ngIf="!isAuth" class="should-login">
+    <a class="btn bwm-btn-main" routerLink="/login">Login and book this place today</a>
+  </div>
+  <p class="booking-note-title">People are interested into this house</p>
+  <p class="booking-note-text">
+    More than 500 people checked this rental in last month.
+  </p>
+</div>
+
+
+

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RentalService } from '../shared/rental.service';
 import { Rental } from '../shared/rental.model';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'bwm-rental-detail',
@@ -15,7 +16,8 @@ export class RentalDetailComponent {
 
   constructor(
     private rentalService: RentalService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private auth: AuthService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {

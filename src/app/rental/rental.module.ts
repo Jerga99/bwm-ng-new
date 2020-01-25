@@ -15,6 +15,7 @@ import { HighlightDirective, BwmNgIfDirective, BwmNgForDirective } from '../shar
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { RentalNewComponent } from './rental-new/rental-new.component';
 import { FormsModule } from '@angular/forms';
+import { RentalBookingComponent } from './components/rental-booking/rental-booking.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
     BwmNgIfDirective,
     BwmNgForDirective,
     RentalSecretComponent,
-    RentalNewComponent
+    RentalNewComponent,
+    RentalBookingComponent
   ],
   imports: [
     RouterModule.forChild(routes),
