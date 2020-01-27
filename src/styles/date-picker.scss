@@ -9,6 +9,10 @@
     }
   }
 
+  td.off.in-range {
+    background-color: #ffe2e2ed !important;
+  }
+
   td.active, td.active:hover {
     background-color: $dark-red-color !important;
   }
