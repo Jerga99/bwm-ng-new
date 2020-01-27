@@ -3,6 +3,7 @@ import { Moment } from 'moment';
 import { Booking } from 'src/app/booking/shared/booking.model';
 import { Rental } from '../../shared/rental.model';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { TimeService } from 'src/app/shared/services/time.service';
 
 @Component({
   selector: 'bwm-rental-booking',
@@ -21,6 +22,7 @@ export class RentalBookingComponent implements OnInit {
   }
 
   constructor(
+    public timeService: TimeService,
     public modalService: NgxSmartModalService) { }
 
   ngOnInit() {
@@ -44,6 +46,10 @@ export class RentalBookingComponent implements OnInit {
     this.newBooking.endAt = endDate.format();
     this.newBooking.nights = endDate.diff(startDate, 'days');
     this.newBooking.price = this.newBooking.nights * this.rental.dailyPrice;
+  }
+
+  checkIfDateIsInvalid = (date: Moment): boolean => {
+    return this.timeService.isDateInPast(date);
   }
 
   openConfirmationModal() {
