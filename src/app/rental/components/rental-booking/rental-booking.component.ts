@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Moment } from 'moment';
 import { Booking } from 'src/app/booking/shared/booking.model';
+import { Rental } from '../../shared/rental.model';
 
 @Component({
   selector: 'bwm-rental-booking',
@@ -10,6 +11,7 @@ import { Booking } from 'src/app/booking/shared/booking.model';
 export class RentalBookingComponent implements OnInit {
 
   @Input('isAuth') isAuth = false;
+  @Input('rental') rental: Rental;
 
   newBooking: Booking;
   calendar: {startDate: Moment, endDate: Moment};
@@ -30,9 +32,23 @@ export class RentalBookingComponent implements OnInit {
 
   updateBookingDates({startDate, endDate}: {[key: string]: Moment}) {
     if (!startDate || !endDate) { return; }
+    debugger
+    if (startDate.isSame(endDate, 'days')) {
+      alert('Invalid Dates!');
+      this.calendar = null;
+    }
     
     this.newBooking.startAt = startDate.format();
     this.newBooking.endAt = endDate.format();
+    this.newBooking.nights = endDate.diff(startDate, 'days');
+    this.newBooking.price = this.newBooking.nights * this.rental.dailyPrice;
+  }
+
+  get canOpenConfirmation() {
+    return this.newBooking.startAt &&
+           this.newBooking.endAt &&
+           this.newBooking.guests &&
+           this.newBooking.guests > 0;
   }
 
   reservePlace() {

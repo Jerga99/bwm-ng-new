@@ -1,6 +1,6 @@
 <div class="booking">
   <!-- TODO: rental.dailyPrice -->
-  <h3 class="booking-price">$12 <span class="booking-per-night">per night</span></h3>
+  <h3 class="booking-price">${{rental.dailyPrice}} <span class="booking-per-night">per night</span></h3>
   <hr>
   <!-- TODO: if is authenticated -->
   <ng-container *ngIf="isAuth">
@@ -28,6 +28,7 @@
     </form>
     <button 
       (click)="reservePlace()"
+      [disabled]="!canOpenConfirmation"
       class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
     <hr>
   </ng-container>
