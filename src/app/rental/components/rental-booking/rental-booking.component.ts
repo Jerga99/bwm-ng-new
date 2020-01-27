@@ -33,11 +33,7 @@ export class RentalBookingComponent implements OnInit {
     this.bookingService
       .getBookings(this.rental._id)
       .subscribe(bookings => {
-        bookings.forEach(booking => {
-          debugger
-          const dateRange = this.timeService.getRangeOfDates(booking.startAt, booking.endAt);
-          this.madeBookings.push(...dateRange);
-        })
+        bookings.forEach(booking => this.addBookedOutDates(booking.startAt, booking.endAt))
       })
   }
 
@@ -47,6 +43,7 @@ export class RentalBookingComponent implements OnInit {
       .createBooking(this.newBooking)
       .subscribe((savedBooking) => {
         alert('Huray! Booking created!');
+        this.addBookedOutDates(savedBooking.startAt, savedBooking.endAt);
         this.calendar = null;
         this.initBooking();
         this.modal.close();
@@ -62,7 +59,6 @@ export class RentalBookingComponent implements OnInit {
 
   updateBookingDates({startDate, endDate}: {[key: string]: Moment}) {
     if (!startDate || !endDate) { return; }
-    debugger
     if (startDate.isSame(endDate, 'days')) {
       alert('Invalid Dates!');
       this.calendar = null;
@@ -75,11 +71,17 @@ export class RentalBookingComponent implements OnInit {
   }
 
   checkIfDateIsInvalid = (date: Moment): boolean => {
-    return this.timeService.isDateInPast(date);
+    return this.timeService.isDateInPast(date) ||
+           this.madeBookings.includes(date.format())
   }
 
-  openConfirmationModal() {
+  private openConfirmationModal() {
     this.modal.open();
+  }
+
+  private addBookedOutDates(startAt: string, endAt: string) {
+    const dateRange = this.timeService.getRangeOfDates(startAt, endAt);
+    this.madeBookings.push(...dateRange);
   }
 
   get modal() {
