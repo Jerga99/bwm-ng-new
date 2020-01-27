@@ -18,6 +18,7 @@ export class RentalBookingComponent implements OnInit {
 
   newBooking: Booking;
   calendar: {startDate: Moment, endDate: Moment};
+  madeBookings: string[] = [];
   locale = {
     format: 'YYYY/MM/DD'
   }
@@ -29,6 +30,15 @@ export class RentalBookingComponent implements OnInit {
 
   ngOnInit() {
     this.initBooking();
+    this.bookingService
+      .getBookings(this.rental._id)
+      .subscribe(bookings => {
+        bookings.forEach(booking => {
+          debugger
+          const dateRange = this.timeService.getRangeOfDates(booking.startAt, booking.endAt);
+          this.madeBookings.push(...dateRange);
+        })
+      })
   }
 
   reservePlace() {
