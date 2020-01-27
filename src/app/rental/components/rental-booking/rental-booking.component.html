@@ -27,7 +27,7 @@
       </div>
     </form>
     <button 
-      (click)="reservePlace()"
+      (click)="openConfirmationModal()"
       [disabled]="!canOpenConfirmation"
       class="btn btn-danger btn-confirm btn-block">Reserve place now</button>
     <hr>
@@ -44,3 +44,37 @@
 
 
 
+<ngx-smart-modal #confirmationModal identifier="confirmationModal">
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Booking <p>{{newBooking.startAt}} to {{newBooking.endAt}}</p></h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="confirmationModal.close()">
+    </button>
+  </div>
+  <div class="modal-body">
+    <em>{{newBooking.nights}}</em> nights /
+    <!-- Nightly Price -->
+    <em>${{rental.dailyPrice}}</em> per Night
+    <!-- Guests -->
+    <p>Guests: <em>{{newBooking.guests}}</em></p>
+    <!-- Total Price -->
+    <p>Price: <em>${{newBooking.price}}</em></p>
+    <p>Do you confirm booking for selected days?</p>
+  </div>
+  <!-- <div *ngIf="errors.length > 0" class="alert alert-danger modal-error">
+    <p *ngFor="let error of errors">
+      {{error.detail}}
+    </p>
+  </div> -->
+  <div class="modal-footer">
+    <button  type="button" class="btn bwm-btn-main">Confirm</button>
+    <button
+      type="button"
+      class="btn"
+      (click)="confirmationModal.close()">Close
+    </button>
+  </div>
+</ngx-smart-modal>
