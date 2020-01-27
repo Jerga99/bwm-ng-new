@@ -38,6 +38,13 @@ exports.isUserRentalOwner = (req, res, next) => {
   const { rental } = req.body;
   const user = res.locals.user;
 
+  if (!rental) {
+    return res
+      .sendApiError(
+        { title: 'Booking Error', 
+          detail: 'Cannot create booking to undefined rental'});
+  }
+
   Rental
     .findById(rental)
     .populate('owner')
