@@ -11,14 +11,19 @@
         ngxDaterangepickerMd
         name="daterange" 
         [locale]="locale"
-        [(ngModel)]="selected" 
+        [(ngModel)]="calendar" 
+        (datesUpdated)="updateBookingDates($event)"
         class="form-control"/>
       <div class="form-group">
         <label for="guests">Guests</label>
         <!-- TODO: bind to newBooking.guests -->
-        <input type="number"
-               class="form-control"
-               id="guests">
+        <input 
+          [(ngModel)]="newBooking.guests"
+          min="1"
+          type="number"
+          class="form-control"
+          id="guests"
+          name="guests">
       </div>
     </form>
     <button 
