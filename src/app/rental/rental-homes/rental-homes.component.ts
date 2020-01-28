@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { RentalService } from '../shared/rental.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { runInThisContext } from 'vm';
 import { Rental } from '../shared/rental.model';
 
 @Component({
