@@ -18,6 +18,7 @@ import { AuthGuard } from '../auth/shared/auth.guard';
 import { RentalNewComponent } from './rental-new/rental-new.component';
 import { FormsModule } from '@angular/forms';
 import { RentalBookingComponent } from './components/rental-booking/rental-booking.component';
+import { RentalHomesComponent } from './rental-homes/rental-homes.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
       {path: '', component: RentalListingComponent},
       {path: 'new', component: RentalNewComponent, canActivate: [AuthGuard]},
       {path: 'secret', component: RentalSecretComponent, canActivate: [AuthGuard]},
+      {path: ':city/homes', component: RentalHomesComponent},
       {path: ':rentalId', component: RentalDetailComponent}
     ]
   }
@@ -45,7 +47,8 @@ const routes: Routes = [
     BwmNgForDirective,
     RentalSecretComponent,
     RentalNewComponent,
-    RentalBookingComponent
+    RentalBookingComponent,
+    RentalHomesComponent
   ],
   imports: [
     RouterModule.forChild(routes),
