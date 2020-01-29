@@ -6,10 +6,12 @@
       class="col-md-3 col-xs-12">
         <bwm-rental-card 
           [rentalItem]="rental">
+          <button 
+            (click)="deleteRental(rental._id)"
+            class="mt-1 btn btn-danger">
+            Delete
+          </button>
         </bwm-rental-card>
-        <button class="btn btn-danger">
-          Delete
-        </button>
     </div>
   </div>
 </div>

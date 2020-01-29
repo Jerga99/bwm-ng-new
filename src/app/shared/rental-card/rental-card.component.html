@@ -1,6 +1,7 @@
 
-<a routerLink="/rentals/{{rental._id}}">
-  <div class="card bwm-card">
+
+<div class="card bwm-card">
+  <a routerLink="/rentals/{{rental._id}}">
     <img class="card-img-top" [src]="rental.image" alt="">
     <div class="card-block">
       <h6 class="card-subtitle type-{{rental.category}}">
@@ -8,5 +9,7 @@
       <h4 class="card-title">{{rental.title}}</h4>
       <p class="card-text">${{rental.dailyPrice}} per Night &#183; Free Cancelation</p>
     </div>
-  </div>
-</a>
+  </a>
+  <ng-content></ng-content>
+</div>
+
