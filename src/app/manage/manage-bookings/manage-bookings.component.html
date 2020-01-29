@@ -1,1 +1,11 @@
-<p>manage-bookings works!</p>
+
+
+
+<div [ngSwitch]="bookingType">
+  <div *ngSwitchCase="bookingTypes.received">
+    <bwm-booking-listing title="RECEIVED BOOKINGS"></bwm-booking-listing>
+  </div>
+  <div *ngSwitchDefault>
+    <bwm-booking-listing title="ALL BOOKINGS"></bwm-booking-listing>
+  </div>
+</div>

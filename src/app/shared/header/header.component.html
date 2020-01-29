@@ -32,7 +32,10 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="manage/rentals">My Rentals</a>
             <a class="dropdown-item" routerLink="manage/bookings">My Bookings</a>
-            <a class="dropdown-item" routerLink="manage/bookings">Received Bookings</a>
+            <a 
+              class="dropdown-item" 
+              [queryParams]="{type: 'received'}"
+              routerLink="manage/bookings">Received Bookings</a>
           </div>
         </li>
         <li class="nav-item">

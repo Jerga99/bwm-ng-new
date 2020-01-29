@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+
+enum BOOKING_TYPES {
+  received = 'received',
+  all = 'all'
+}
 
 @Component({
   selector: 'bwm-manage-bookings',
@@ -7,9 +14,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageBookingsComponent implements OnInit {
 
-  constructor() { }
+  bookingType: string;
+  bookingTypes = BOOKING_TYPES;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.bookingType = params['type'] || this.bookingTypes.all;
+    })
   }
 
 }
