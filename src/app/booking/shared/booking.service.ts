@@ -29,4 +29,8 @@ export class BookingService {
       .post<Booking>('/api/v1/bookings', booking)
       .pipe(catchError((error: HttpErrorResponse) => throwError(exctractApiError(error))))
   }
+
+  deleteBooking(bookingId: String): Observable<any> {
+    return this.http.delete(`/api/v1/bookings/${bookingId}`);
+  }
 }

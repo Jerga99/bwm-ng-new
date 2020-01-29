@@ -22,7 +22,8 @@
             <a 
               [routerLink]="'/rentals/' + booking.rental._id"
                class="btn bwm-btn-main">Go to Rental</a>
-            <button
+            <button *ngIf="type === 'all'"
+              (click)="deleteBooking(booking._id)"
               class="ml-1 btn btn-danger">Delete
             </button>
           </div>
@@ -30,6 +31,9 @@
             Created at {{booking.createdAt | timeFormat}}
           </div>
         </div>
+      </div>
+      <div *ngIf="bookings.length === 0" class="alert alert-warning">
+        No bookings created :(
       </div>
     </ng-container>
   </div>
