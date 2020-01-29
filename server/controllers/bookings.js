@@ -45,6 +45,35 @@ exports.getUserBookings = async (req, res) => {
   }
 }
 
+exports.deleteBooking = async (req, res) => {
+  const DAYS_THRESHOLD = 3;
+  const { bookingId } = req.params;
+  const { user } = res.locals;
+
+  try {
+    const booking = await Booking.findById(bookingId).populate('user');
+
+    if (user.id !== booking.user.id) {
+      return res.sendApiError(
+        { title: 'Invalid User', 
+          detail: 'You are not owner of this booking!'});
+    }
+
+    const dayDiff = moment(booking.startAt).diff(moment(), 'days');
+
+    if (moment(booking.startAt).diff(moment(), 'days') > DAYS_THRESHOLD) {
+      await booking.remove();
+      return res.json({id: bookingId});
+    } else {
+      return res.sendApiError(
+        { title: 'Invalid Booking', 
+          detail: 'You cannot delete booking at least 3 days before arrival!'});
+    }
+  } catch(error) {
+    return res.mongoError(error);
+  }
+}
+
 exports.createBooking = async (req, res) => {
   const bookingData = req.body;
   const booking = new Booking(
