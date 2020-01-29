@@ -59,8 +59,6 @@ exports.deleteBooking = async (req, res) => {
           detail: 'You are not owner of this booking!'});
     }
 
-    const dayDiff = moment(booking.startAt).diff(moment(), 'days');
-
     if (moment(booking.startAt).diff(moment(), 'days') > DAYS_THRESHOLD) {
       await booking.remove();
       return res.json({id: bookingId});
