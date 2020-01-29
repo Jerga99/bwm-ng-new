@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Booking } from 'src/app/booking/shared/booking.model';
 
 @Component({
   selector: 'bwm-booking-listing',
@@ -8,10 +10,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BookingListingComponent implements OnInit {
 
   @Input('title') title: string;
+  @Input('getBookings') getBookings: () => Observable<Booking[]>
 
-  constructor() { }
+  bookings: Booking[];
 
   ngOnInit() {
+    this.getBookings()
+      .subscribe((bookings) => {
+        debugger
+        this.bookings = bookings;
+      })
   }
 
 }
