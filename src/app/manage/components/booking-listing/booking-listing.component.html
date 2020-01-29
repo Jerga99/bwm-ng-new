@@ -1,29 +1,33 @@
 <section id="userBookings">
   <h1 class="page-title">{{title}}</h1>
   <div class="row">
-    <ng-container>
+    <ng-container *ngIf="bookings">
       <!-- Iterate bookings -->
-      <div class="col-md-4">
+      <div *ngFor="let booking of bookings" class="col-md-4">
         <div class="card text-center">
-          <!-- Only if type === 'received' -->
-          <div class="card-header">
-            From: Some User
+          <div *ngIf="type === 'received'" class="card-header">
+            From: {{booking.user.username}}
           </div>
           <div class="card-block">
             <ng-container>
-              <h4 class="card-title">Rental Title - Rental City </h4>
+              <h4 class="card-title">{{booking.rental.title}} - {{booking.rental.city | upper:'firstLetterUpper'}} </h4>
             </ng-container>
             <p class="card-text booking-days">
-              2020/02/02 - 2020/02/07 | 5 nights
+              {{booking.startAt | timeFormat}} - {{booking.endAt | timeFormat}} | {{booking.nights}} nights
             </p>
-            <p class="card-text"><span>Price: </span> <span class="booking-price-value">$250</span></p>
-            <a class="btn bwm-btn-main">Go to Rental</a>
+            <p class="card-text">
+              <span>Price: </span>
+              <span class="booking-price-value">${{booking.price}}</span>
+            </p>
+            <a 
+              [routerLink]="'/rentals/' + booking.rental._id"
+               class="btn bwm-btn-main">Go to Rental</a>
             <button
               class="ml-1 btn btn-danger">Delete
             </button>
           </div>
           <div class="card-footer text-muted">
-            Created at 2020/02/01
+            Created at {{booking.createdAt | timeFormat}}
           </div>
         </div>
       </div>

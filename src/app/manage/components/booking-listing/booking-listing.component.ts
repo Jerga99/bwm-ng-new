@@ -11,6 +11,7 @@ export class BookingListingComponent implements OnInit {
 
   @Input('title') title: string;
   @Input('getBookings') getBookings: () => Observable<Booking[]>
+  @Input('type') type: string;
 
   bookings: Booking[];
 

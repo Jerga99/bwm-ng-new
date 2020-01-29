@@ -8,6 +8,7 @@ import { AuthGuard } from '../auth/shared/auth.guard';
 import { BookingListingComponent } from './components/booking-listing/booking-listing.component';
 import { RentalCardComponent } from '../shared/rental-card/rental-card.component';
 import { SharedRentalModule } from '../shared/modules/shared-rental.module';
+import { SharedModule } from '../shared/modules/shared.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     BookingListingComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     SharedRentalModule,
     RouterModule.forChild(routes)
