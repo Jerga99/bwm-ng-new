@@ -36,4 +36,8 @@ export class RentalService {
         catchError(
           (resError: HttpErrorResponse) => throwError(exctractApiError(resError))))
   }
+
+  deleteRental(rentalId: string): Observable<any> {
+    return this.http.delete(`/api/v1/rentals/${rentalId}`);
+  }
 }
