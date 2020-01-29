@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { TokenInterceptor } from './auth/shared/token.interceptor';
+import { ManageModule } from './manage/manage.module';
 
 // root module
 @NgModule({
@@ -24,6 +25,7 @@ import { TokenInterceptor } from './auth/shared/token.interceptor';
     AppRoutingModule,
     RentalModule,
     AuthModule,
+    ManageModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
