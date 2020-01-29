@@ -14,6 +14,19 @@ exports.getBookings = async (req, res) => {
   }
 }
 
+exports.getUserBookings = async (req, res) => {
+  const { user } = res.locals;
+  try {
+    const bookings = await Booking
+                              .find({user})
+                              .populate('user', '-password')
+                              .populate('rental');
+    return res.json(bookings);
+  } catch(error) {
+    return res.mongoError(error);
+  }
+}
+
 exports.createBooking = async (req, res) => {
   const bookingData = req.body;
   const booking = new Booking(
