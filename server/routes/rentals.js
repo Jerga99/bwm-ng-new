@@ -8,12 +8,14 @@ const {
   createRental,
   getUserRentals,
   deleteRental,
-  updateRental} = require('../controllers/rentals');
+  updateRental,
+  verifyUser } = require('../controllers/rentals');
 
 // /api/v1/rentals?city="berlin"
 router.get('', getRentals);
 router.get('/me', onlyAuthUser, getUserRentals);
 router.get('/:rentalId', getRentalById);
+router.get('/:rentalId/verify-user', onlyAuthUser, verifyUser);
 
 router.post('', onlyAuthUser, createRental);
 
