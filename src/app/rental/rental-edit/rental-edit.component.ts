@@ -13,6 +13,7 @@ import { UppercasePipe } from 'src/app/shared/pipes/uppercase.pipe';
 export class RentalEditComponent implements OnInit {
 
   rental: Rental;
+  rentalCategories = Rental.CATEGORIES;
 
   constructor(
     private rentalService: RentalService,

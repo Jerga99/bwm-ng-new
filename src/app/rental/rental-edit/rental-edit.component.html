@@ -20,9 +20,25 @@
     <div class="row">
       <div class="col-md-8">
         <div class="rental">
-          <h2 class="rental-type type-{{rental.category}}">
-            {{rental.shared ? 'Shared' : 'Whole'}} {{rental.category}}
-          </h2>
+          <div class="rental-type type-{{rental.category}}">
+            Shared:
+            <bwm-editable-select
+              (entityUpdated)="updateRental($event)"
+              [options]="[true, false]"
+              [entity]="rental"
+              [field]="'shared'"
+              [inline]="true"
+              className="rental-shared">
+            </bwm-editable-select>
+
+          <bwm-editable-select
+            (entityUpdated)="updateRental($event)"
+            [options]="rentalCategories"
+            [entity]="rental"
+            [field]="'category'"
+            className="rental-category">
+          </bwm-editable-select>
+          </div>
           <bwm-editable-input
             (entityUpdated)="updateRental($event)"
             [entity]="rental"
