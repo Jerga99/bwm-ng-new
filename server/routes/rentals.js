@@ -7,13 +7,17 @@ const {
   getRentalById,
   createRental,
   getUserRentals,
-  deleteRental } = require('../controllers/rentals');
+  deleteRental,
+  updateRental} = require('../controllers/rentals');
 
 // /api/v1/rentals?city="berlin"
 router.get('', getRentals);
 router.get('/me', onlyAuthUser, getUserRentals);
 router.get('/:rentalId', getRentalById);
+
 router.post('', onlyAuthUser, createRental);
+
+router.patch('/:rentalId', onlyAuthUser, updateRental);
 
 router.delete('/:rentalId', onlyAuthUser, deleteRental);
 
