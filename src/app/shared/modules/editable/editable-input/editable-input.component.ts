@@ -16,6 +16,7 @@ export class EditableInputComponent implements OnInit {
   }
 
   entityField: string;
+  isActiveInput = false;
 
   constructor() { }
 

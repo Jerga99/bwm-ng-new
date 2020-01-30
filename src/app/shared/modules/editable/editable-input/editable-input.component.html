@@ -1,9 +1,37 @@
 
 
 
-<div class="editable-input">
+<div class="editable-component">
   <input
+    *ngIf="isActiveInput"
     [(ngModel)]="entity[entityField]"
     [class]="className"
     [type]="type">
+
+  <span 
+    *ngIf="!isActiveInput" 
+    class="{{className}}">{{entity[entityField]}}
+  </span>
+
+  <div class="button-container">
+    <button
+      *ngIf="!isActiveInput"
+      (click)="isActiveInput = true"
+      class="btn btn-small btn-warning btn-editable">
+      Edit
+    </button>
+
+    <button
+      *ngIf="isActiveInput"
+      class="btn btn-small btn-success btn-editable">
+      Save
+    </button>
+
+    <button
+      *ngIf="isActiveInput"
+      (click)="isActiveInput = false"
+      class="btn btn-small btn-danger btn-editable">
+      Cancel
+    </button>
+  </div>
 </div>
