@@ -10,7 +10,7 @@
 
   <span 
     *ngIf="!isActiveInput" 
-    class="{{className}}">{{entity[entityField]}}
+    class="{{className}}">{{transformView(entity[entityField])}}
   </span>
 
   <div class="button-container">

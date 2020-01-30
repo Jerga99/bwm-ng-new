@@ -13,7 +13,7 @@ export class EditableInputComponent {
   @Input('className') className: string;
   @Input('type') type = 'text';
   @Input('inline') inline = false;
-
+  @Input('transformView') transformView = value => value;
   @Input('field') set field(entityField: string) {
     this.entityField = entityField;
     this.setOriginValue();

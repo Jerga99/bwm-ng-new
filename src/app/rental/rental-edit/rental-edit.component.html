@@ -34,6 +34,7 @@
             (entityUpdated)="updateRental($event)"
             [entity]="rental"
             [field]="'city'"
+            [transformView]="transformLocation"
             className="rental-city-input">
           </bwm-editable-input>
 
@@ -41,6 +42,7 @@
             (entityUpdated)="updateRental($event)"
             [entity]="rental"
             [field]="'street'"
+            [transformView]="transformLocation"
             className="rental-city-input">
           </bwm-editable-input>
 
@@ -50,13 +52,14 @@
               <bwm-editable-input
                 (entityUpdated)="updateRental($event)"
                 [entity]="rental"
+                [type]="'number'"
                 [field]="'numOfRooms'"
                 [inline]="true"
                 className="">
               </bwm-editable-input> bedrooms
             </span>
-            <span class="item"><i class="fa fa-user"></i>{{rental.numOfRooms + 4}} guests</span>
-            <span class="item"><i class="fa fa-bed"></i>{{rental.numOfRooms + 2}} beds</span>
+            <span class="item"><i class="fa fa-user"></i>{{countBedroomsAssets(4)}} guests</span>
+            <span class="item"><i class="fa fa-bed"></i>{{countBedroomsAssets(2)}} beds</span>
           </div>
           <p class="rental-description">
             {{rental.description}}

@@ -1,7 +1,10 @@
 
 
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Pipe({
   name: 'upper'
 })

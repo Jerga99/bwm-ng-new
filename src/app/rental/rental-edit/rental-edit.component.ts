@@ -3,6 +3,7 @@ import { Rental } from '../shared/rental.model';
 import { RentalService } from '../shared/rental.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { UppercasePipe } from 'src/app/shared/pipes/uppercase.pipe';
 
 @Component({
   selector: 'bwm-rental-edit',
@@ -16,7 +17,8 @@ export class RentalEditComponent implements OnInit {
   constructor(
     private rentalService: RentalService,
     private route: ActivatedRoute,
-    private auth: AuthService) {}
+    private auth: AuthService,
+    private upper: UppercasePipe) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -40,6 +42,15 @@ export class RentalEditComponent implements OnInit {
         alert('Update Error!');
         notifier(error);
       })
+  }
+
+  transformLocation = (location: string) => {
+    return this.upper.transform(location, 'firstLetterUpper');
+  }
+
+  countBedroomsAssets(asset: number): number {
+    const { numOfRooms } = this.rental;
+    return parseInt(<any>numOfRooms, 10) + asset;
   }
 
   get rentalLocation(): string {
