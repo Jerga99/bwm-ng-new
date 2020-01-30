@@ -20,6 +20,7 @@ import { RentalBookingComponent } from './components/rental-booking/rental-booki
 import { RentalHomesComponent } from './rental-homes/rental-homes.component';
 import { SharedRentalModule } from '../shared/modules/shared-rental.module';
 import { SharedModule } from '../shared/modules/shared.module';
+import { RentalEditComponent } from './rental-edit/rental-edit.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
       {path: 'new', component: RentalNewComponent, canActivate: [AuthGuard]},
       {path: 'secret', component: RentalSecretComponent, canActivate: [AuthGuard]},
       {path: ':city/homes', component: RentalHomesComponent},
-      {path: ':rentalId', component: RentalDetailComponent}
+      {path: ':rentalId', component: RentalDetailComponent},
+      {path: ':rentalId/edit', component: RentalEditComponent, canActivate: [AuthGuard]},
     ]
   }
 ]
@@ -47,7 +49,8 @@ const routes: Routes = [
     RentalSecretComponent,
     RentalNewComponent,
     RentalBookingComponent,
-    RentalHomesComponent
+    RentalHomesComponent,
+    RentalEditComponent
   ],
   imports: [
     SharedModule,
