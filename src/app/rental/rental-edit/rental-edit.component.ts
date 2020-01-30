@@ -29,7 +29,15 @@ export class RentalEditComponent implements OnInit {
   }
 
   updateRental(rentalEvent: any) {
-    alert(JSON.stringify(rentalEvent.data));
+    const { data } = rentalEvent;
+
+    this.rentalService
+      .updateRental(this.rental._id, data)
+      .subscribe(updatedRental => {
+        this.rental = updatedRental;
+      }, (error) => {
+        alert('Update Error!');
+      })
   }
 
   get rentalLocation(): string {
