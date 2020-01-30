@@ -26,6 +26,7 @@
 
           <!-- <h1 [bwmHighlight]="'transparent'" class="rental-title">{{rental.title}}</h1> -->
           <bwm-editable-input
+            (entityUpdated)="updateRental($event)"
             [entity]="rental"
             [field]="'title'"
             className="rental-title">

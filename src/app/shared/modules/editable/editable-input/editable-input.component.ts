@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'bwm-editable-input',
   templateUrl: './editable-input.component.html',
   styleUrls: ['./editable-input.component.scss']
 })
-export class EditableInputComponent implements OnInit {
+export class EditableInputComponent {
+
+  @Output('entityUpdated') entityUpdated = new EventEmitter();
 
   @Input('entity') entity: any;
   @Input('className') className: string;
@@ -20,18 +22,32 @@ export class EditableInputComponent implements OnInit {
   originEntityValue: any;
   isActiveInput = false;
 
-  constructor() { }
+  updateEntity() {
+    if (this.entityValue !== this.originEntityValue) {
+      this.entityUpdated.emit({
+        data: { [this.entityField]: this.entityValue }
+      })
+    }
 
-  ngOnInit() {
+    this.isActiveInput = false;
   }
+  
 
   cancelUpdate() {
-    this.entity[this.entityField] = this.originEntityValue;
+    this.entityValue = this.originEntityValue;
     this.isActiveInput = false; 
   }
 
   private setOriginValue() {
-    this.originEntityValue = this.entity[this.entityField];
+    this.originEntityValue = this.entityValue;
+  }
+
+  private set entityValue(value: any) {
+    this.entity[this.entityField] = value;
+  }
+
+  private get entityValue() {
+    return this.entity[this.entityField];
   }
   
 }
