@@ -25,7 +25,11 @@
           </h2>
 
           <!-- <h1 [bwmHighlight]="'transparent'" class="rental-title">{{rental.title}}</h1> -->
-          <bwm-editable-input></bwm-editable-input>
+          <bwm-editable-input
+            [entity]="rental"
+            [field]="'title'"
+            className="rental-title">
+          </bwm-editable-input>
 
           <h2 class="rental-city">{{rental.city | upper:'firstLetterUpper'}}</h2>
           <div class="rental-room-info">

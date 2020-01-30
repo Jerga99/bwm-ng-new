@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'bwm-editable-input',
@@ -6,6 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editable-input.component.scss']
 })
 export class EditableInputComponent implements OnInit {
+
+  @Input('entity') entity: any;
+  @Input('className') className: string;
+  @Input('type') type = 'text';
+
+  @Input('field') set field(entityField: string) {
+    this.entityField = entityField;
+  }
+
+  entityField: string;
 
   constructor() { }
 
