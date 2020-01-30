@@ -22,6 +22,7 @@ import { SharedRentalModule } from '../shared/modules/shared-rental.module';
 import { SharedModule } from '../shared/modules/shared.module';
 import { RentalEditComponent } from './rental-edit/rental-edit.component';
 import { RentalGuard } from '../auth/shared/rental.guard';
+import { EditableModule } from '../shared/modules/editable/editable.module';
 
 const routes: Routes = [
   {
@@ -60,6 +61,7 @@ const routes: Routes = [
     MapModule,
     FormsModule,
     SharedRentalModule,
+    EditableModule,
     NgxDaterangepickerMd.forRoot(),
     NgxSmartModalModule.forChild()
   ]
