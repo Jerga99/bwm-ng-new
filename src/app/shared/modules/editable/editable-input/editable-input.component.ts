@@ -13,9 +13,11 @@ export class EditableInputComponent implements OnInit {
 
   @Input('field') set field(entityField: string) {
     this.entityField = entityField;
+    this.setOriginValue();
   }
 
   entityField: string;
+  originEntityValue: any;
   isActiveInput = false;
 
   constructor() { }
@@ -23,4 +25,13 @@ export class EditableInputComponent implements OnInit {
   ngOnInit() {
   }
 
+  cancelUpdate() {
+    this.entity[this.entityField] = this.originEntityValue;
+    this.isActiveInput = false; 
+  }
+
+  private setOriginValue() {
+    this.originEntityValue = this.entity[this.entityField];
+  }
+  
 }
