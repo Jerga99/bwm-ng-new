@@ -29,14 +29,16 @@ export class RentalEditComponent implements OnInit {
   }
 
   updateRental(rentalEvent: any) {
-    const { data } = rentalEvent;
+    const { data, notifier } = rentalEvent;
 
     this.rentalService
       .updateRental(this.rental._id, data)
       .subscribe(updatedRental => {
         this.rental = updatedRental;
+        notifier(null);
       }, (error) => {
         alert('Update Error!');
+        notifier(error);
       })
   }
 

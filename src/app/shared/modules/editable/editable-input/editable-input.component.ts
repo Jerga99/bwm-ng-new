@@ -25,15 +25,21 @@ export class EditableInputComponent {
   updateEntity() {
     if (this.entityValue !== this.originEntityValue) {
       this.entityUpdated.emit({
-        data: { [this.entityField]: this.entityValue }
+        data: { [this.entityField]: this.entityValue },
+        notifier: this.inputNotifier
       })
+    }
+  }
 
-      this.setOriginValue();
+  inputNotifier = (error: any) => {
+    if (error) {
+      this.cancelUpdate();
+      return;
     }
 
+    this.setOriginValue();
     this.isActiveInput = false;
   }
-  
 
   cancelUpdate() {
     this.entityValue = this.originEntityValue;
