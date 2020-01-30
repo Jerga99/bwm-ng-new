@@ -26,9 +26,9 @@
           <h1 [bwmHighlight]="'transparent'" class="rental-title">{{rental.title}}</h1>
           <h2 class="rental-city">{{rental.city | upper:'firstLetterUpper'}}</h2>
           <div class="rental-room-info">
-            <span><i class="fa fa-building"></i>{{rental.numOfRooms}} bedrooms</span>
-            <span><i class="fa fa-user"></i>{{rental.numOfRooms + 4}} guests</span>
-            <span><i class="fa fa-bed"></i>{{rental.numOfRooms + 2}} beds</span>
+            <span class="item"><i class="fa fa-building"></i>{{rental.numOfRooms}} bedrooms</span>
+            <span class="item"><i class="fa fa-user"></i>{{rental.numOfRooms + 4}} guests</span>
+            <span class="item"><i class="fa fa-bed"></i>{{rental.numOfRooms + 2}} beds</span>
           </div>
           <p class="rental-description">
             {{rental.description}}

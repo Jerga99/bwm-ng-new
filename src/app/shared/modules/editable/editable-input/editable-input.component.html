@@ -1,7 +1,7 @@
 
 
 
-<div class="editable-component">
+<div class="editable-component" [ngClass]="{'editable-component-inline': inline}">
   <input
     *ngIf="isActiveInput"
     [(ngModel)]="entity[entityField]"

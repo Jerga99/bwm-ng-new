@@ -12,6 +12,7 @@ export class EditableInputComponent {
   @Input('entity') entity: any;
   @Input('className') className: string;
   @Input('type') type = 'text';
+  @Input('inline') inline = false;
 
   @Input('field') set field(entityField: string) {
     this.entityField = entityField;
