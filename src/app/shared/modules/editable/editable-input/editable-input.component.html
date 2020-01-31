@@ -4,6 +4,8 @@
 <div class="editable-component" [ngClass]="{'editable-component-inline': inline}">
   <input
     *ngIf="isActiveInput"
+    (keydown.escape)="cancelUpdate()"
+    (keydown.enter)="updateEntity()"
     [(ngModel)]="entity[entityField]"
     [class]="className"
     [type]="type">

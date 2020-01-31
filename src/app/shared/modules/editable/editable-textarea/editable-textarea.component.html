@@ -6,6 +6,8 @@
   
   <textarea
     *ngIf="isActiveInput"
+    (keydown.escape)="cancelUpdate()"
+    (keydown.enter)="updateEntity()"
     class="{{className}}"
     [(ngModel)]="entity[entityField]"
     rows="{{rows}}"

@@ -5,6 +5,8 @@
   
   <select
     *ngIf="isActiveInput"
+    (keydown.escape)="cancelUpdate()"
+    (keydown.enter)="updateEntity()"
     class="{{className}}"
     [(ngModel)]="entity[entityField]">
     <option [selected]="entity[entityField] === undefined" disabled>-----</option>
