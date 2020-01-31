@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { dataUri } = require('../services/dataUri');
 
 const { onlyAuthUser } = require('../controllers/users');
 
@@ -24,7 +25,7 @@ router.post('', onlyAuthUser, singleUploadCtrl, (req, res) => {
 
   try {
     if (!req.file) { throw new Error('Image is not presented!');}
-    console.log(req.file);
+    const file64 = dataUri(req.file);
     return res.json({message: 'Uploading File...'})
   } catch(error) {
     return res.sendApiError(
