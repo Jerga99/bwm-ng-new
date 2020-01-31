@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, of as observableOf } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import tt from '@tomtom-international/web-sdk-maps';
+import { element } from 'protractor';
 
 interface TomResponse {
   summary: {[key: string]: any};
@@ -67,6 +68,7 @@ export class MapService {
   }
 
   addMarkerToMap(map: any, position: GeoPosition) {
+    this.removePreviousMarkers();
     const markerDiv = document.createElement('div');
     markerDiv.className = 'bwm-marker';
 
@@ -78,6 +80,7 @@ export class MapService {
   }
 
   addPopupToMap(map: any, message: string) {
+    this.removePreviousPopups();
     new tt.Popup({className: 'bwm-popup', closeButton: false, closeOnClick: false})
       .setLngLat(new tt.LngLat(0, 0))
       .setHTML(`<p>${message}</p>`)
@@ -100,6 +103,22 @@ export class MapService {
 
   private get locationError() {
     return new Error('Location not found!');
+  }
+
+  private removePreviousPopups() {
+    this.removeElementByClass('bwm-popup');
+  }
+
+  private removePreviousMarkers() {
+    this.removeElementByClass('bwm-marker');
+  }
+
+  private removeElementByClass(className) {
+    const elements = document.getElementsByClassName(className);
+
+    while(elements.length > 0) {
+      elements[0].parentNode.removeChild(elements[0]);
+    }
   }
 }
 
