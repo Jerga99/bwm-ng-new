@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { ImageUploadService } from './image-upload.service';
-
 
 class ImageSnippet {
   src: string;
@@ -21,6 +20,7 @@ class ImageSnippet {
 })
 export class ImageUploadComponent implements OnInit, OnDestroy {
 
+  @Output() imageUploaded = new EventEmitter();
   selectedImage: ImageSnippet;
 
   private fileReader = new FileReader();
@@ -40,8 +40,8 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
 
     this.imageService
       .uploadImage(this.selectedImage.file)
-      .subscribe((uploadedImage: any) => {
-        console.log(uploadedImage);
+      .subscribe((uploadedImage: any) => { 
+        this.imageUploaded.emit(uploadedImage._id);
         this.selectedImage.status = 'UPLOADED';
       }, () => {
         this.selectedImage.status = 'ERROR';

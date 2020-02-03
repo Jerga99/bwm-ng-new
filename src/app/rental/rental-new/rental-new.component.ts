@@ -26,6 +26,10 @@ export class RentalNewComponent implements OnInit {
     this.newRental.category = this.rentalCategories[0];
   }
 
+  attachImageToRental(imageId: string) {
+    this.newRental.image._id = imageId;
+  }
+
   createRental(rentalForm: NgForm) {
     validateInputs(rentalForm);
 
@@ -38,5 +42,10 @@ export class RentalNewComponent implements OnInit {
         _ => this.router.navigate(['/rentals']),
         errors => this.errors = errors
       )
+  }
+
+  get hasImageId(): boolean {
+    return this.newRental.image && 
+           this.newRental.image._id ? true : false;
   }
 }

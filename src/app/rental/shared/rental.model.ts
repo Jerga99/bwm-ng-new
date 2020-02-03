@@ -14,7 +14,7 @@ export class Rental {
   city: string; // Los Angeles
   street: string; // Main Street
   category: string; // apartment
-  image: CImage;
+  image = new CImage();
   numOfRooms: number; // 5
   description: string; // Some nice place near a beach.
   dailyPrice: number; // 127

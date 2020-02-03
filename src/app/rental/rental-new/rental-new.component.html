@@ -54,7 +54,9 @@
 
           <div class="form-group">
             <label>Image</label>
-            <bwm-image-upload></bwm-image-upload>
+            <bwm-image-upload 
+              (imageUploaded)="attachImageToRental($event)">
+            </bwm-image-upload>
           </div>
 
           <div class="form-group">
@@ -106,6 +108,7 @@
               id="shared">
           </div>
           <button type="button"
+                  [disabled]="!hasImageId"
                   (click)="createRental(rentalForm)"
                   class="btn bwm-btn-main">Create
           </button>
