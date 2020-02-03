@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ImageUploadService } from './image-upload.service';
 
 
 class ImageSnippet {
@@ -24,7 +25,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
 
   private fileReader = new FileReader();
 
-  constructor() { }
+  constructor(private imageService: ImageUploadService) { }
 
   ngOnInit() {
     this.listenToFileLoading();
@@ -32,6 +33,24 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.removeFileLoadListener();
+  }
+
+  uploadImage() {
+    this.selectedImage.status = 'PENDING';
+
+    this.imageService
+      .uploadImage(this.selectedImage.file)
+      .subscribe((uploadedImage: any) => {
+        console.log(uploadedImage);
+        this.selectedImage.status = 'UPLOADED';
+      }, () => {
+        this.selectedImage.status = 'ERROR';
+      })
+  }
+
+  cancelImage(fileInput: any) {
+    this.selectedImage = null;
+    fileInput.value = null;
   }
 
   onImageLoad(event: any) {

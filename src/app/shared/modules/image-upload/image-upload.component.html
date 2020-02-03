@@ -3,6 +3,7 @@
   <label class="image-upload-container btn bwm-btn-main">
     <span>Select Image</span>
     <input 
+      #fileInput
       type="file"
       accept="image/*"
       (change)="onImageLoad($event)">
@@ -12,5 +13,19 @@
     <div class="img-preview">
       <img [src]="selectedImage?.src" >
     </div>
+  </div>
+
+  <div *ngIf="selectedImage" class="mt-1">
+    <button 
+      *ngIf="selectedImage.status === 'LOADED'"
+      (click)="uploadImage()"
+      class="btn btn-success mr-1"
+      type="button">Upload Image
+    </button>
+    <button 
+      (click)="cancelImage(fileInput)"
+      class="btn btn-danger"
+      type="button">Cancel
+    </button>
   </div>
 </div>
