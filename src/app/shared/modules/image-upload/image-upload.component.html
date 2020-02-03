@@ -7,4 +7,10 @@
       accept="image/*"
       (change)="onImageLoad($event)">
   </label>
+
+  <div *ngIf="selectedImage" class="img-preview-container">
+    <div class="img-preview">
+      <img [src]="selectedImage?.src" >
+    </div>
+  </div>
 </div>
