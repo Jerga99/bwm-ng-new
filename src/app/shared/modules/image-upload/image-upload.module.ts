@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageUploadComponent } from './image-upload.component';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 
 
@@ -12,7 +13,8 @@ import { ImageUploadComponent } from './image-upload.component';
     ImageUploadComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SpinnerModule
   ]
 })
 export class ImageUploadModule { }

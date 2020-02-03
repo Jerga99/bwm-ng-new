@@ -10,8 +10,24 @@
   </label>
 
   <div *ngIf="selectedImage" class="img-preview-container">
-    <div class="img-preview">
-      <img [src]="selectedImage?.src" >
+    <div class="img-preview{{selectedImage.status === 'ERROR' ? '-error' : ''}}">
+      <img *ngIf="selectedImage.src" [src]="selectedImage.src" >
+    </div>
+
+    <div 
+      *ngIf="selectedImage.status === 'PENDING'"
+      class="spinner-container">
+      <bwm-spinner></bwm-spinner>
+    </div>
+    <div 
+      *ngIf="selectedImage.status === 'UPLOADED'"
+      class="alert alert-success">
+      Image has been uploaded succesfuly!
+    </div>
+    <div 
+      *ngIf="selectedImage.status === 'ERROR'"
+      class="alert alert-danger">
+      Image uploaded failed!
     </div>
   </div>
 
