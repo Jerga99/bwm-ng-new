@@ -1,5 +1,9 @@
 
-
+class CImage {
+  _id: string;
+  url: string;
+  cloudinaryId: string;
+}
 
 export class Rental {
 
@@ -10,7 +14,7 @@ export class Rental {
   city: string; // Los Angeles
   street: string; // Main Street
   category: string; // apartment
-  image: string; // https://someurlOfImage.png
+  image: CImage;
   numOfRooms: number; // 5
   description: string; // Some nice place near a beach.
   dailyPrice: number; // 127
