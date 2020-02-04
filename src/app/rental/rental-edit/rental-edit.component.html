@@ -6,7 +6,12 @@
   <div class="upper-section">
     <div class="row">
       <div class="col-md-6">
-        <img [src]="rental.image?.url" alt="">
+        <bwm-editable-image
+          (entityUpdated)="updateRental($event)"
+          [transformView]="transformImage"
+          [entity]="rental"
+          [field]="'image'">
+        </bwm-editable-image>
       </div>
       <div class="col-md-6">
         <bwm-map

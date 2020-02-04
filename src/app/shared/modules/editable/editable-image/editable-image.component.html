@@ -1,0 +1,11 @@
+
+
+<div>
+  <img
+    *ngIf="!isActiveInput"
+    [src]="transformView(entity[entityField])"
+    class="editable-image mb-1">
+  <bwm-image-upload
+    (imageLoaded)="onImageLoad()">
+  </bwm-image-upload>
+</div>

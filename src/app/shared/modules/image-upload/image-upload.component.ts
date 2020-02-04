@@ -17,6 +17,7 @@ export class ImageSnippet {
 export class ImageUploadComponent implements OnInit, OnDestroy {
 
   @Output() imageUploaded = new EventEmitter();
+  @Output() imageLoaded = new EventEmitter();
   selectedImage: ImageSnippet;
   imageChangedEvent: any = '';
 
@@ -57,9 +58,10 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
   }
 
   onImageLoad(event: any) {
+    this.imageLoaded.emit();
     this.imageChangedEvent = event;
     const file: File = event.target.files[0];
-    
+
     this.selectedImage = new ImageSnippet(file.name, file.type);
     // this will fire 'load' event
     this.fileReader.readAsDataURL(file);

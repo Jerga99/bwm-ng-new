@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Rental } from '../shared/rental.model';
+import { Rental, CImage } from '../shared/rental.model';
 import { RentalService } from '../shared/rental.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/shared/auth.service';
@@ -53,6 +53,10 @@ export class RentalEditComponent implements OnInit {
 
   transformLocation = (location: string) => {
     return this.upper.transform(location, 'firstLetterUpper');
+  }
+
+  transformImage = (image: CImage): string => {
+    return image.url;
   }
 
   countBedroomsAssets(asset: number): number {

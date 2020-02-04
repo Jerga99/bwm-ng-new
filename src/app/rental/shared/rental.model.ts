@@ -1,5 +1,5 @@
 
-class CImage {
+export class CImage {
   _id: string;
   url: string;
   cloudinaryId: string;

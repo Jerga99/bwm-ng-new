@@ -10,6 +10,7 @@
   </label>
 
   <image-cropper
+    *ngIf="imageChangedEvent"
     [imageChangedEvent]="imageChangedEvent"
     [maintainAspectRatio]="true"
     [aspectRatio]="3 / 2"
