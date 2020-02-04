@@ -2,17 +2,12 @@ import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/cor
 import { ImageUploadService } from './image-upload.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
-class ImageSnippet {
+export class ImageSnippet {
   src: string;
-  file: File;
-  status: string;
+  status = 'INIT';
 
-  constructor(file?: File) {
-    this.file = file;
-    this.status = 'INIT';
-  }
+  constructor(public name: string, public type: string) {}
 }
-
 
 @Component({
   selector: 'bwm-image-upload',
@@ -45,7 +40,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     this.selectedImage.status = 'PENDING';
 
     this.imageService
-      .uploadImage(this.selectedImage.file)
+      .uploadImage(this.selectedImage)
       .subscribe((uploadedImage: any) => { 
         this.imageUploaded.emit(uploadedImage._id);
         this.selectedImage.status = 'UPLOADED';
@@ -63,9 +58,9 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
 
   onImageLoad(event: any) {
     this.imageChangedEvent = event;
-    const file = event.target.files[0];
+    const file: File = event.target.files[0];
     
-    this.selectedImage = new ImageSnippet(file);
+    this.selectedImage = new ImageSnippet(file.name, file.type);
     // this will fire 'load' event
     this.fileReader.readAsDataURL(file);
   }
