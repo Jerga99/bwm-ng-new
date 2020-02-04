@@ -4,8 +4,9 @@
   <img
     *ngIf="!isActiveInput"
     [src]="transformView(entity[entityField])"
-    class="editable-image mb-1">
+    class="editable-image mb-1 {{className}}">
   <bwm-image-upload
-    (imageLoaded)="onImageLoad()">
+    (imageLoaded)="onImageLoad()"
+    (imageCanceled)="isActiveInput = false">
   </bwm-image-upload>
 </div>

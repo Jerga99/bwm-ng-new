@@ -18,6 +18,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
 
   @Output() imageUploaded = new EventEmitter();
   @Output() imageLoaded = new EventEmitter();
+  @Output() imageCanceled = new EventEmitter();
   selectedImage: ImageSnippet;
   imageChangedEvent: any = '';
 
@@ -55,6 +56,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
     this.selectedImage = null;
     fileInput.value = null;
     this.imageChangedEvent = null;
+    this.imageCanceled.emit();
   }
 
   onImageLoad(event: any) {
