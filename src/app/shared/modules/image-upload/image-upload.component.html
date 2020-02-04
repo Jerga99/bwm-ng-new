@@ -9,6 +9,15 @@
       (change)="onImageLoad($event)">
   </label>
 
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="3 / 2"
+    format="jpeg"
+    [resizeToWidth]="950"
+    (imageCropped)="imageCropped($event)">
+  </image-cropper>
+
   <div *ngIf="selectedImage" class="img-preview-container">
     <div class="img-preview{{selectedImage.status === 'ERROR' ? '-error' : ''}}">
       <img *ngIf="selectedImage.src" [src]="selectedImage.src" >
