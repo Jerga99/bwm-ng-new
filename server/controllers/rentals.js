@@ -86,7 +86,9 @@ exports.updateRental = async (req, res) => {
 
     rental.set(rentalData);
     await rental.save();
-    return res.status(200).send(rental);
+    const updatedRental = await Rental
+      .findById(rentalId).populate('owner').populate('image');
+    return res.status(200).send(updatedRental);
   } catch(error) {
     return res.mongoError(error);
   }
