@@ -47,11 +47,11 @@ export class EditableComponent {
     this.originEntityValue = this.entityValue;
   }
 
-  private set entityValue(value: any) {
+  protected set entityValue(value: any) {
     this.entity[this.entityField] = value;
   }
 
-  private get entityValue() {
+  protected get entityValue() {
     return this.entity[this.entityField];
   }
 }

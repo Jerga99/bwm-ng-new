@@ -46,6 +46,7 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
       .subscribe((uploadedImage: any) => { 
         this.imageUploaded.emit(uploadedImage._id);
         this.selectedImage.status = 'UPLOADED';
+        this.imageChangedEvent = null;
       }, () => {
         this.selectedImage.status = 'ERROR';
         this.imageChangedEvent = null;
