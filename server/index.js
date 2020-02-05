@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./config/dev');
 const { provideErrorHandler } = require('./middlewares');
+const path = require('path');
 
 // routes
 const rentalRoutes = require('./routes/rentals');
@@ -44,6 +45,15 @@ app.use('/api/v1/rentals', rentalRoutes);
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
 app.use('/api/v1/image-upload', imageUploadRoutes);
+
+
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, '..', 'dist');
+  app.use(express.static(distPath));
+  app.get('*', (req, res) => {
+    return res.sendFile(path.resolve(distPath, 'index.html'));
+  })
+}
 
 app.listen(PORT, () => {
   console.log('Server is listening on port: ', PORT);

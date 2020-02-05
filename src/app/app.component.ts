@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router) {
     // this.logout = this.logout.bind(this);
   }

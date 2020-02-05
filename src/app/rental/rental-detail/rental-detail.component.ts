@@ -17,7 +17,7 @@ export class RentalDetailComponent implements OnInit {
   constructor(
     private rentalService: RentalService,
     private route: ActivatedRoute,
-    private auth: AuthService) {}
+    public auth: AuthService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
