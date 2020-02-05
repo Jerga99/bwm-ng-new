@@ -19,11 +19,11 @@ const routes: Routes = [
       {path: 'rentals', component: ManageRentalsComponent, canActivate: [AuthGuard]}
     ]
   }
-]
+];
 
 @NgModule({
   declarations: [
-    ManageRentalsComponent, 
+    ManageRentalsComponent,
     ManageBookingsComponent,
     ManageComponent,
     BookingListingComponent

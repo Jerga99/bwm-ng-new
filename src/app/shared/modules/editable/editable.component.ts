@@ -9,22 +9,23 @@ export class EditableComponent {
   @Input('className') className: string;
   @Input('type') type = 'text';
   @Input('inline') inline = false;
+
+  entityField: string;
+  originEntityValue: any;
+  isActiveInput = false;
+
   @Input('transformView') transformView = value => value;
   @Input('field') set field(entityField: string) {
     this.entityField = entityField;
     this.setOriginValue();
   }
 
-  entityField: string;
-  originEntityValue: any;
-  isActiveInput = false;
-
   updateEntity() {
     if (this.entityValue !== this.originEntityValue) {
       this.entityUpdated.emit({
         data: { [this.entityField]: this.entityValue },
         notifier: this.inputNotifier
-      })
+      });
     }
   }
 
@@ -40,7 +41,7 @@ export class EditableComponent {
 
   cancelUpdate() {
     this.entityValue = this.originEntityValue;
-    this.isActiveInput = false; 
+    this.isActiveInput = false;
   }
 
   private setOriginValue() {

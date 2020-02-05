@@ -11,7 +11,7 @@ export class TimeService {
     let mStartAt = moment(new Date(startAt));
     const mEndAt = moment(new Date(endAt));
 
-    while(mStartAt < mEndAt) {
+    while (mStartAt < mEndAt) {
       dates.push(mStartAt.format());
       mStartAt = mStartAt.add(1, 'day');
     }

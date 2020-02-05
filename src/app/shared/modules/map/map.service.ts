@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, of as observableOf } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map as pipeMap, catchError } from 'rxjs/operators';
 import tt from '@tomtom-international/web-sdk-maps';
-import { element } from 'protractor';
 
 interface TomResponse {
   summary: {[key: string]: any};
@@ -24,28 +23,28 @@ export class MapService {
 
   constructor(private http: HttpClient) { }
 
-  getGeoPosition(location: string, apiKey: String): Observable<GeoPosition> {
+  getGeoPosition(location: string, apiKey: string): Observable<GeoPosition> {
     const cachedLocation = this.getCachedLocation(location);
 
-    return cachedLocation ? 
-      observableOf(cachedLocation) : 
-      this.requestGeoLocation(location, apiKey)
+    return cachedLocation ?
+      observableOf(cachedLocation) :
+      this.requestGeoLocation(location, apiKey);
   }
 
-  private requestGeoLocation(location: string, apiKey: String): Observable<GeoPosition> {
+  private requestGeoLocation(location: string, apiKey: string): Observable<GeoPosition> {
     return this.http
       .get(`https://api.tomtom.com/search/2/geocode/${location}.JSON?key=${apiKey}`)
       .pipe(
-        map((tomRes: TomResponse) => {
+        pipeMap((tomRes: TomResponse) => {
           const results = tomRes.results;
           if (results && results.length > 0) {
-            const { position } = results[0]
+            const { position } = results[0];
             this.cacheLocation(location, position);
             return position;
           }
 
           throw this.locationError;
-      }), catchError(_ => throwError(this.locationError)))
+      }), catchError(_ => throwError(this.locationError)));
   }
 
   createMap(options) {
@@ -91,14 +90,14 @@ export class MapService {
     const locationKey = this.normalizeLocation(location);
     return this.locationCache[locationKey];
   }
- 
+
   private cacheLocation(location: string, position: GeoPosition) {
     const locationKey = this.normalizeLocation(location);
     this.locationCache[locationKey] = position;
   }
 
   private normalizeLocation(location: string) {
-    return location.replace(/\s/g,'').toLowerCase()
+    return location.replace(/\s/g, '').toLowerCase();
   }
 
   private get locationError() {
@@ -116,7 +115,7 @@ export class MapService {
   private removeElementByClass(className) {
     const elements = document.getElementsByClassName(className);
 
-    while(elements.length > 0) {
+    while (elements.length > 0) {
       elements[0].parentNode.removeChild(elements[0]);
     }
   }

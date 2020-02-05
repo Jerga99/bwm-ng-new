@@ -23,7 +23,7 @@ export class RentalHomesComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.city = params.get('city');
       this.getRentals();
-    })
+    });
   }
 
   getRentals() {
@@ -33,7 +33,7 @@ export class RentalHomesComponent implements OnInit {
       .subscribe(rentals => {
         this.rentals = rentals;
         this.isFetching = false;
-      })
+      });
   }
 
 }

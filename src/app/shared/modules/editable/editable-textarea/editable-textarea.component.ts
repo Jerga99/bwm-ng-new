@@ -10,5 +10,4 @@ export class EditableTextareaComponent extends EditableComponent  {
 
   @Input('rows') rows = 5;
   @Input('cols') cols = 50;
- 
 }

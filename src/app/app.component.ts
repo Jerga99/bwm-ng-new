@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router){
+    private router: Router) {
     // this.logout = this.logout.bind(this);
   }
 

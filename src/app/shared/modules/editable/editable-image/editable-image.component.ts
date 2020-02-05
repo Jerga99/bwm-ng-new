@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { EditableComponent } from '../editable.component';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'bwm-editable-image',

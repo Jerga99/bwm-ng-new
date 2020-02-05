@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   message: string;
   messageTimeout: number;
   loginForm: FormGroup;
-  emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   errors: BwmApi.Error[] = [];
 
   constructor(
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
-    this.checkLoginMessage(); 
+    this.checkLoginMessage();
   }
 
   login() {
@@ -43,8 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       }, (errors: BwmApi.Error[]) => {
         this.errors = errors;
-      }) 
-    
+      });
   }
 
   checkLoginMessage() {
@@ -56,21 +55,23 @@ export class LoginComponent implements OnInit, OnDestroy {
           replaceUrl: true,
           queryParams: {message: null},
           queryParamsHandling: 'merge'
-        })
+        });
 
         this.message = '';
       }, 2000);
-    })
+    });
   }
 
   ngOnDestroy() {
-    this.messageTimeout && window.clearTimeout(this.messageTimeout);
+    if (this.messageTimeout) {
+      window.clearTimeout(this.messageTimeout);
+    }
   }
 
   initForm() {
     this.loginForm = this.fb.group({
       email: ['', [
-        Validators.required, 
+        Validators.required,
         Validators.pattern(this.emailPattern),
         forbiddenEmailValidator('jerga99@gmail.com')
       ]],
@@ -78,8 +79,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  get email(): AbstractControl { return this.loginForm.get('email')}
-  get password(): AbstractControl { return this.loginForm.get('password')}
+  get email(): AbstractControl { return this.loginForm.get('email'); }
+  get password(): AbstractControl { return this.loginForm.get('password'); }
 
   get diagnostic(): string {
     return JSON.stringify(this.loginForm.value);

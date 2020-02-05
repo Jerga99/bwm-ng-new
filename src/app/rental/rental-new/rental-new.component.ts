@@ -41,11 +41,11 @@ export class RentalNewComponent implements OnInit {
       .subscribe(
         _ => this.router.navigate(['/rentals']),
         errors => this.errors = errors
-      )
+      );
   }
 
   get hasImageId(): boolean {
-    return this.newRental.image && 
+    return this.newRental.image &&
            this.newRental.image._id ? true : false;
   }
 }

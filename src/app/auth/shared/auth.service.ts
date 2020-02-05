@@ -4,16 +4,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { exctractApiError } from 'src/app/shared/helpers/functions';
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import * as moment from 'moment';
 
 const jwt = new JwtHelperService();
 
 class DecodedToken {
-  exp: number = 0;
-  username: string = '';
-  userId: string = '';
+  exp = 0;
+  username = '';
+  userId = '';
 }
 
 
@@ -29,18 +29,18 @@ export class AuthService {
   private decodedToken: DecodedToken;
   redirectUrl: string;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient) {
     this.decodedToken = new DecodedToken();
   }
 
-  //'/api/v1/users/register'
+  // '/api/v1/users/register'
   register(formData: RegisterForm): Observable<any> {
     return this.http
       .post('/api/v1/users/register', formData)
-      .pipe(catchError((resError: HttpErrorResponse) => 
+      .pipe(catchError((resError: HttpErrorResponse) =>
         throwError(exctractApiError(resError))
       )
-    )
+    );
   }
 
   // /api/v1/users/login
@@ -49,19 +49,19 @@ export class AuthService {
       .post('/api/v1/users/login', formData)
       .pipe(
         map((token: string) => {
-          this.saveToken(token)
+          this.saveToken(token);
           return token;
         }),
-        catchError((resError: HttpErrorResponse) => 
+        catchError((resError: HttpErrorResponse) =>
           throwError(exctractApiError(resError))
         )
-    )}
-  
+    ); }
+
   logout() {
     localStorage.removeItem('bwm_auth_token');
     this.decodedToken = new DecodedToken();
   }
-  
+
   checkAuthentication(): boolean {
     const authToken = localStorage.getItem('bwm_auth_token');
     if (!authToken) { return false; }

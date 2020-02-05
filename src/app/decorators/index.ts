@@ -3,7 +3,7 @@
 
 
 
-export const AppDecorator = config => {
+export const appDecorator = config => {
   console.log(config.message);
 
   return target => {

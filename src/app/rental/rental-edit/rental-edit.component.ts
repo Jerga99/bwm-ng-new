@@ -29,8 +29,8 @@ export class RentalEditComponent implements OnInit {
         .getRentalById(params['rentalId'])
         .subscribe(rental => {
           this.rental = rental;
-        })
-    })
+        });
+    });
   }
 
   updateRental(rentalEvent: any) {
@@ -48,7 +48,7 @@ export class RentalEditComponent implements OnInit {
       }, (error) => {
         alert('Update Error!');
         notifier(error);
-      })
+      });
   }
 
   transformLocation = (location: string) => {
@@ -61,11 +61,11 @@ export class RentalEditComponent implements OnInit {
 
   countBedroomsAssets(asset: number): number {
     const { numOfRooms } = this.rental;
-    return parseInt(<any>numOfRooms, 10) + asset;
+    return parseInt(numOfRooms as any, 10) + asset;
   }
 
   get rentalLocation(): string {
-    return `${this.rental.city}, ${this.rental.street}`
+    return `${this.rental.city}, ${this.rental.street}`;
   }
 
 }

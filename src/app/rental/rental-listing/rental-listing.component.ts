@@ -8,10 +8,10 @@ import { RentalService } from '../shared/rental.service';
   templateUrl: './rental-listing.component.html',
   styleUrls: ['./rental-listing.component.scss']
 })
-export class RentalListingComponent implements OnInit{
+export class RentalListingComponent implements OnInit {
   rentals: Rental[] = [];
 
-  constructor(private rentalService: RentalService){}
+  constructor(private rentalService: RentalService) {}
 
   ngOnInit() {
     this.rentalService.getRentals()

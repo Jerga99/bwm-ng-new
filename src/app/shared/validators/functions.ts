@@ -1,23 +1,23 @@
 
-import { 
-  AbstractControl, 
-  ValidatorFn, 
+import {
+  AbstractControl,
+  ValidatorFn,
   FormGroup,
-  ValidationErrors, 
+  ValidationErrors,
   NgForm} from '@angular/forms';
 
 
 export function validateInputs(form: NgForm) {
   Object.keys(form.controls).forEach(controlName => {
     form.controls[controlName].markAsDirty();
-  })
+  });
 }
 
 
-export function forbiddenEmailValidator(email: String): ValidatorFn {
+export function forbiddenEmailValidator(email: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const forbidden = control.value === email;
-    return forbidden ? {'forbiddenEmail': {value: control.value}} : null
+    return forbidden ? {forbiddenEmail: {value: control.value}} : null;
   };
 }
 
@@ -28,6 +28,6 @@ export function sameAsValidator(controls: string[]): ValidatorFn {
 
     if (!firstControl || !secondControl) { return null; }
 
-    return firstControl.value !== secondControl.value ? {'sameAs': {value: control.value}} : null;
-  }
+    return firstControl.value !== secondControl.value ? {sameAs: {value: control.value}} : null;
+  };
 }

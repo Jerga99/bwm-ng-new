@@ -1,8 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { 
-  CanActivate, 
-  RouterStateSnapshot, 
+import {
+  CanActivate,
+  RouterStateSnapshot,
   Router,
   ActivatedRouteSnapshot} from '@angular/router';
 import { RentalService } from 'src/app/rental/shared/rental.service';
@@ -16,7 +16,7 @@ export class RentalGuard implements CanActivate {
 
   constructor(
     private rentalService: RentalService,
-    private router: Router){}
+    private router: Router) {}
 
   // /rentals/:rentalId/edit
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
@@ -29,7 +29,7 @@ export class RentalGuard implements CanActivate {
         catchError(_ => {
           this.router.navigate(['/rentals']);
           return observableOf(false);
-        }))
+        }));
   }
 
 }

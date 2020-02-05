@@ -25,6 +25,6 @@ export class AppStorage<T> {
     return this.items.map(item => {
       console.log(item);
       return item;
-    })
+    });
   }
 }

@@ -12,7 +12,7 @@ export class RentalService {
 
   constructor(
     private http: HttpClient) {}
-  
+
   getRentalById(rentalId: string): Observable<Rental> {
     return this.http.get<Rental>(`/api/v1/rentals/${rentalId}`);
   }
@@ -34,7 +34,7 @@ export class RentalService {
     return this.http.post<Rental>('/api/v1/rentals', newRental)
       .pipe(
         catchError(
-          (resError: HttpErrorResponse) => throwError(exctractApiError(resError))))
+          (resError: HttpErrorResponse) => throwError(exctractApiError(resError))));
   }
 
   verifyRentalOwner(rentalId: string): Observable<any> {
@@ -44,7 +44,7 @@ export class RentalService {
   updateRental(rentalId: string, rental: Rental): Observable<Rental> {
     return this.http.patch<Rental>(`/api/v1/rentals/${rentalId}`, rental);
   }
- 
+
   deleteRental(rentalId: string): Observable<any> {
     return this.http.delete(`/api/v1/rentals/${rentalId}`);
   }

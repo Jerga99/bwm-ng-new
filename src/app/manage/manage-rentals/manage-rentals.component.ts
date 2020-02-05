@@ -11,7 +11,7 @@ export class ManageRentalsComponent implements OnInit {
 
   rentals: Rental[];
 
-  constructor(private rentalService: RentalService){}
+  constructor(private rentalService: RentalService) {}
 
   ngOnInit() {
     this.rentalService.getAuthUserRentals()
@@ -31,7 +31,7 @@ export class ManageRentalsComponent implements OnInit {
         this.rentals.splice(index, 1);
 
         alert('Rental has been deleted!');
-      }, _ => alert('Rental cannot be deleted!'))
+      }, _ => alert('Rental cannot be deleted!'));
   }
 
   private askForPermission(): boolean {

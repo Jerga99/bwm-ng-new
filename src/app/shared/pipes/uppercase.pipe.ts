@@ -17,7 +17,7 @@ export class UppercasePipe implements PipeTransform {
       return value
         .split(' ')
         .map(word => word[0].toUpperCase() + word.slice(1))
-        .join(' ')
+        .join(' ');
     }
 
     return value.toUpperCase();
@@ -35,6 +35,6 @@ export class FirstUpperLetterPipe implements PipeTransform {
     return value
       .split(' ')
       .map(word => word[0].toUpperCase() + word.slice(1))
-      .join(' ')
+      .join(' ');
   }
 }

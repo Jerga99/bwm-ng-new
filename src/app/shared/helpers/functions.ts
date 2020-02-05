@@ -7,4 +7,4 @@ export const exctractApiError = (resError: HttpErrorResponse): BwmApi.Error[] =>
   }
 
   return errors;
-}
+};

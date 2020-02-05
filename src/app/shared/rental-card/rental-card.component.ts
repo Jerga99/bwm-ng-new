@@ -1,5 +1,5 @@
-import { 
-  Component, 
+import {
+  Component,
   Input} from '@angular/core';
 import { Rental } from 'src/app/rental/shared/rental.model';
 
@@ -12,7 +12,7 @@ export class RentalCardComponent {
 
   @Input('rentalItem') set rentalItem(rental: Rental) {
     this.rental = rental;
-  };
+  }
 
   rental: Rental;
 }

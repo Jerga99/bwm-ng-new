@@ -43,14 +43,14 @@ export class ImageUploadComponent implements OnInit, OnDestroy {
 
     this.imageService
       .uploadImage(this.selectedImage)
-      .subscribe((uploadedImage: any) => { 
+      .subscribe((uploadedImage: any) => {
         this.imageUploaded.emit(uploadedImage._id);
         this.selectedImage.status = 'UPLOADED';
         this.imageChangedEvent = null;
       }, () => {
         this.selectedImage.status = 'ERROR';
         this.imageChangedEvent = null;
-      })
+      });
   }
 
   cancelImage(fileInput: any) {

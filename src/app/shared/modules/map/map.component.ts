@@ -1,6 +1,6 @@
-import { 
-  Component, 
-  Input, 
+import {
+  Component,
+  Input,
   OnInit,
   OnDestroy,
   ViewEncapsulation } from '@angular/core';
@@ -20,7 +20,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   @Input('location') location: string;
   @Input('mapNotifier') mapNotifier: Subject<string>;
-  
+
   constructor(private mapService: MapService) { }
 
   ngOnInit() {
@@ -35,11 +35,13 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.mapNotifier && this.mapNotifier.unsubscribe();
+    if (this.mapNotifier) {
+      this.mapNotifier.unsubscribe();
+    }
   }
 
   private createMap() {
-    this.map = this.mapService.createMap({apiKey: this.API_KEY})
+    this.map = this.mapService.createMap({apiKey: this.API_KEY});
   }
 
   private getGeoPosition(location: string) {
@@ -50,7 +52,7 @@ export class MapComponent implements OnInit, OnDestroy {
       }, (error: Error) => {
         this.mapService.centerMap(this.map, {lat: 0, lon: 0});
         this.mapService.addPopupToMap(this.map, error.message);
-      })
+      });
   }
 
 }

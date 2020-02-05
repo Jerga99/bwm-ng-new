@@ -38,7 +38,7 @@ const routes: Routes = [
       {path: ':rentalId/edit', component: RentalEditComponent, canActivate: [AuthGuard, RentalGuard]},
     ]
   }
-]
+];
 
 @NgModule({
   declarations: [

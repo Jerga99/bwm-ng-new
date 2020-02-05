@@ -25,9 +25,9 @@ export class ManageBookingsComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.bookingType = params['type'] || this.bookingTypes.all;
-    })
+    });
   }
 
-  getAuthUserBookings = () => this.bookingService.getAuthUserBookings()
-  getReceivedBookings = () => this.bookingService.getReceivedBookings()
+  getAuthUserBookings = () => this.bookingService.getAuthUserBookings();
+  getReceivedBookings = () => this.bookingService.getReceivedBookings();
 }

@@ -23,7 +23,7 @@ export class RentalBookingComponent implements OnInit {
   madeBookings: string[] = [];
   locale = {
     format: 'YYYY/MM/DD'
-  }
+  };
 
   constructor(
     private toastr: ToastrService,
@@ -36,8 +36,8 @@ export class RentalBookingComponent implements OnInit {
     this.bookingService
       .getBookings(this.rental._id)
       .subscribe(bookings => {
-        bookings.forEach(booking => this.addBookedOutDates(booking.startAt, booking.endAt))
-      })
+        bookings.forEach(booking => this.addBookedOutDates(booking.startAt, booking.endAt));
+      });
   }
 
   reservePlace() {
@@ -54,7 +54,7 @@ export class RentalBookingComponent implements OnInit {
         this.modal.close();
       }, (errors) => {
         this.errors = errors;
-      })
+      });
   }
 
   initBooking() {
@@ -67,7 +67,7 @@ export class RentalBookingComponent implements OnInit {
     if (startDate.isSame(endDate, 'days')) {
       this.calendar = null;
     }
-    
+
     this.newBooking.startAt = startDate.format();
     this.newBooking.endAt = endDate.format();
     this.newBooking.nights = endDate.diff(startDate, 'days');
@@ -76,7 +76,7 @@ export class RentalBookingComponent implements OnInit {
 
   checkIfDateIsInvalid = (date: Moment): boolean => {
     return this.timeService.isDateInPast(date) ||
-           this.madeBookings.includes(date.format())
+           this.madeBookings.includes(date.format());
   }
 
   openConfirmationModal() {

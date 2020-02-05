@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ImageSnippet } from './image-upload.component';
@@ -10,7 +10,7 @@ import { ImageSnippet } from './image-upload.component';
 })
 export class ImageUploadService {
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
   uploadImage(image: ImageSnippet): Observable<any> {
     const { src, type, name } = image;

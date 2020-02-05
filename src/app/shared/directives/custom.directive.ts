@@ -1,11 +1,11 @@
 
 
-import { 
+import {
   ElementRef,
   ViewContainerRef,
   TemplateRef,
-  Directive, 
-  Input, 
+  Directive,
+  Input,
   OnInit,
   OnChanges } from '@angular/core';
 
@@ -14,12 +14,12 @@ import {
 })
 export class HighlightDirective implements OnInit {
 
-  @Input('bwmHighlight') bwmHighlight
+  @Input('bwmHighlight') bwmHighlight;
 
   constructor(private el: ElementRef) {}
 
   ngOnInit() {
-    this.el.nativeElement.style.backgroundColor = this.bwmHighlight; 
+    this.el.nativeElement.style.backgroundColor = this.bwmHighlight;
   }
 }
 
@@ -38,7 +38,7 @@ export class BwmNgIfDirective {
       this.container.clear();
       this.hasView = false;
     }
-  };
+  }
 
   constructor(
     private container: ViewContainerRef,
@@ -58,8 +58,7 @@ export class BwmNgForDirective implements OnChanges {
 
   ngOnChanges() {
     this.bwmNgForOf.forEach(value => {
-      debugger
-      this.container.createEmbeddedView(this.template, { $implicit: value}); 
-    })
+      this.container.createEmbeddedView(this.template, { $implicit: value});
+    });
   }
 }

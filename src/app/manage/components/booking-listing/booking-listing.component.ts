@@ -11,7 +11,7 @@ import { BookingService } from 'src/app/booking/shared/booking.service';
 export class BookingListingComponent implements OnInit {
 
   @Input('title') title: string;
-  @Input('getBookings') getBookings: () => Observable<Booking[]>
+  @Input('getBookings') getBookings: () => Observable<Booking[]>;
   @Input('type') type: string;
 
   bookings: Booking[];
@@ -20,7 +20,7 @@ export class BookingListingComponent implements OnInit {
 
   ngOnInit() {
     this.getBookings()
-      .subscribe((bookings) => this.bookings = bookings)
+      .subscribe((bookings) => this.bookings = bookings);
   }
 
   deleteBooking(bookingId: string) {
@@ -34,7 +34,7 @@ export class BookingListingComponent implements OnInit {
         this.bookings.splice(index, 1);
 
         alert('Booking has been deleted!');
-      }, _ => alert('Booking cannot be deleted!'))
+      }, _ => alert('Booking cannot be deleted!'));
   }
 
   private askForPermission(): boolean {
